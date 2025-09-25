@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const App = () => {
-  const AnimatedSection = ({ children, id }) => (
+  const AnimatedSection = ({ children, id, className }) => (
     <motion.section
       id={id}
-      className="py-24 bg-secondary"
+      className={`py-24 ${className}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -22,7 +22,7 @@ const App = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['inicio', 'estilos', 'artistas', 'galeria', 'contacto'];
+      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'contacto'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -55,13 +55,13 @@ const App = () => {
     {
       id: 1,
       name: "Blackwork",
-      image: "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "https://i.imgur.com/dc4nTu9.jpeg",
       description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas."
     },
     {
       id: 2,
       name: "Realismo",
-      image: "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "https://i.imgur.com/HOFNR5H.jpeg",
       description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada."
     },
     {
@@ -73,13 +73,13 @@ const App = () => {
     {
       id: 4,
       name: "Geométricos",
-      image: "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "https://i.imgur.com/Ujd8maG.jpeg",
       description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel."
     },
     {
       id: 5,
       name: "Japonés",
-      image: "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "https://i.imgur.com/X1XXM51.jpeg",
       description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales."
     }
   ];
@@ -97,12 +97,11 @@ const App = () => {
   };
 
   const galleryImages = [
-    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1577212820165-499512510092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "https://i.imgur.com/PppDLeb.jpeg",
+    "https://i.imgur.com/M0kkHn6.jpeg",
+    "https://i.imgur.com/trNozRZ.jpeg",
+    "https://i.imgur.com/p920JrQ.jpeg",
+    "https://i.imgur.com/0EjSn5r.jpeg"
   ];
 
   const eyebrowStyles = [
@@ -149,28 +148,26 @@ const App = () => {
     setIsMenuOpen(false);
   };
 
-  // Enlace de WhatsApp con mensaje predeterminado
   const whatsappLink = `https://wa.me/584242049941?text=Hola%20Sergio,%20vi%20tu%20portafolio%20online%20y%20me%20gustaría%20agendar%20una%20cita%20para%20un%20tatuaje.`;
 
   return (
-      <div className="min-h-screen bg-secondary text-white">
-      {/* Header */}
-        <header className="fixed w-full z-50 bg-secondary/80 backdrop-blur-md border-b border-primary/50">
+    <div className="min-h-screen bg-secondary text-white">
+      <header className="fixed w-full z-50 bg-secondary/80 backdrop-blur-md border-b border-primary/50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-primary-gradient rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-primary-gradient rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                 </svg>
               </div>
-                <h1 className="text-2xl font-bold bg-primary-gradient bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-primary-gradient bg-clip-text text-transparent">
                 Warriors Tattoo
               </h1>
             </div>
             <div className="hidden lg:flex space-x-4">
-                {['inicio', 'estilos', 'cejas', 'artistas', 'galeria'].map((section) => (
-                  <button key={section} onClick={() => scrollToSection(section)} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+              {['inicio', 'estilos', 'cejas', 'artistas', 'galeria'].map((section) => (
+                <button key={section} onClick={() => scrollToSection(section)} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                 </button>
               ))}
@@ -179,7 +176,7 @@ const App = () => {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-                className="bg-primary-gradient px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-accent-pink/50"
+              className="bg-primary-gradient px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-accent-pink/50"
             >
               Agenda tu cita
             </a>
@@ -187,43 +184,41 @@ const App = () => {
         </div>
       </header>
 
-      {/* Hero */}
-        <motion.section
-          id="inicio"
-          className="relative h-screen flex items-center justify-center bg-secondary"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <img src="https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="Fondo estudio" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+      <motion.section
+        id="inicio"
+        className="relative h-screen flex items-center justify-center bg-secondary"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <img src="https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="Fondo estudio" className="absolute inset-0 w-full h-full object-cover opacity-40" />
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
             <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-primary-gradient mb-4">Sergio Fernández</h1>
             <p className="text-xl md:text-2xl text-accent-blue mb-6">Artista Principal - Blackouts & Blackwork</p>
-          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">Transformo tus ideas en arte permanente. Especialista en diseños minimalistas y transformación de tatuajes viejos.</p>
-          <div className="space-x-4">
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
+            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">Transformo tus ideas en arte permanente. Especialista en diseños minimalistas y transformación de tatuajes viejos.</p>
+            <div className="space-x-4">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-primary-gradient px-8 py-3 rounded-full font-bold transition-all duration-300 shadow-lg hover:shadow-accent-purple/50"
-            >
-              Contactar por WhatsApp
-            </a>
+              >
+                Contactar por WhatsApp
+              </a>
               <button onClick={() => scrollToSection('galeria')} className="border border-accent-purple hover:bg-accent-purple hover:text-white px-8 py-3 rounded-full transition-all duration-300">
-              Ver Galería
-            </button>
-          </div>
+                Ver Galería
+              </button>
+            </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Estilos */}
-        <AnimatedSection id="estilos">
+      <AnimatedSection id="estilos" className="bg-secondary">
         <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-5xl font-bold mb-6 bg-primary-gradient bg-clip-text text-transparent">Estilos de Tatuaje</h2>
+          <h2 className="text-5xl font-bold mb-6 bg-primary-gradient bg-clip-text text-transparent">Estilos de Tatuaje</h2>
           <p className="text-xl text-gray-400 mb-12">Especializado en técnicas que marcan tendencia en Venezuela.</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tattooStyles.map((style) => (
-                <div key={style.id} className="bg-primary/50 rounded-2xl overflow-hidden border border-primary/50 hover:shadow-2xl hover:border-accent-pink transition">
+              <div key={style.id} className="bg-primary/50 rounded-2xl overflow-hidden border border-primary/50 hover:shadow-2xl hover:border-accent-pink transition">
                 <img src={style.image} alt={style.name} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">{style.name}</h3>
@@ -233,36 +228,34 @@ const App = () => {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
-        {/* Cejas */}
-        <AnimatedSection id="cejas">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-5xl font-bold mb-6 bg-primary-gradient bg-clip-text text-transparent">Diseño de Cejas</h2>
-            <p className="text-xl text-gray-400 mb-12">Servicios profesionales para unas cejas perfectas y modernas.</p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {eyebrowStyles.map((style) => (
-                <div key={style.id} className="bg-primary/50 rounded-2xl overflow-hidden border border-primary/50 hover:shadow-2xl hover:border-accent-blue transition">
-                  <img src={style.image} alt={style.name} className="w-full h-48 object-cover" />
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">{style.name}</h3>
-                    <p className="text-gray-300">{style.description}</p>
-                  </div>
+      <AnimatedSection id="cejas" className="bg-primary">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-5xl font-bold mb-6 bg-primary-gradient bg-clip-text text-transparent">Descubre tu estilo perfecto: Cejas tatuadas con tendencia y naturalidad</h2>
+          <p className="text-xl text-gray-400 mb-12">¿Sueñas con cejas siempre impecables, sin maquillarte cada mañana? En nuestro estudio, combinamos arte, técnica y las últimas tendencias internacionales para crear cejas que realzan tu mirada y se adaptan a tu rostro, piel y personalidad.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {eyebrowStyles.map((style) => (
+              <div key={style.id} className="bg-secondary/50 rounded-2xl overflow-hidden border border-primary/50 hover:shadow-2xl hover:border-accent-blue transition">
+                <img src={style.image} alt={style.name} className="w-full h-48 object-cover" />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-white mb-2">{style.name}</h3>
+                  <p className="text-gray-300">{style.description}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </AnimatedSection>
+        </div>
+      </AnimatedSection>
 
-      {/* Artista */}
-        <AnimatedSection id="artistas">
+      <AnimatedSection id="artistas" className="bg-secondary">
         <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-5xl font-bold mb-6 bg-primary-gradient bg-clip-text text-transparent">Artista Principal</h2>
-            <div className="bg-primary/40 rounded-3xl overflow-hidden border border-primary/50">
+          <h2 className="text-5xl font-bold mb-6 bg-primary-gradient bg-clip-text text-transparent">Artista Principal</h2>
+          <div className="bg-primary/40 rounded-3xl overflow-hidden border border-primary/50">
             <img src={artist.image} alt={artist.name} className="w-full h-96 object-cover" />
             <div className="p-10">
               <h3 className="text-4xl font-bold text-white mb-2">{artist.name}</h3>
-                <p className="text-accent-blue font-medium text-xl mb-4">{artist.specialty}</p>
+              <p className="text-accent-blue font-medium text-xl mb-4">{artist.specialty}</p>
               <p className="text-gray-300 text-lg mb-6">{artist.bio}</p>
               <div className="flex flex-wrap justify-center gap-6">
                 <span className="text-gray-400">{artist.instagram}</span>
@@ -271,37 +264,34 @@ const App = () => {
             </div>
           </div>
         </div>
-        </AnimatedSection>
+      </AnimatedSection>
 
-      {/* Galería */}
-        <AnimatedSection id="galeria">
+      <AnimatedSection id="galeria" className="bg-primary">
         <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-5xl font-bold mb-6 bg-primary-gradient bg-clip-text text-transparent">Galería de Trabajos</h2>
+          <h2 className="text-5xl font-bold mb-6 bg-primary-gradient bg-clip-text text-transparent">Galería de Trabajos</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
             {galleryImages.map((img, i) => (
-                <div key={i} className="aspect-square bg-primary rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition" onClick={() => handleImageClick(img)}>
+              <div key={i} className="aspect-square bg-secondary rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition" onClick={() => handleImageClick(img)}>
                 <img src={img} alt={`Tatuaje ${i+1}`} className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
         </div>
-        </AnimatedSection>
+      </AnimatedSection>
 
-      {/* Footer */}
-        <footer className="bg-primary py-12 border-t border-primary/50">
+      <footer className="bg-secondary py-12 border-t border-primary/50">
         <div className="max-w-6xl mx-auto px-6 text-center">
-            <h3 className="text-3xl font-bold bg-primary-gradient bg-clip-text text-transparent mb-4">Warriors Tattoo</h3>
+          <h3 className="text-3xl font-bold bg-primary-gradient bg-clip-text text-transparent mb-4">Warriors Tattoo</h3>
           <p className="text-gray-400 mb-4">Estado Miranda, Venezuela | Tel: {artist.phone}</p>
           <p className="text-gray-500">© 2024 Sergio Fernández. Todos los derechos reservados.</p>
         </div>
       </footer>
 
-      {/* Modal de imagen */}
       {selectedImage && (
         <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4" onClick={closeImageModal}>
           <div className="max-w-4xl max-h-full relative" onClick={(e) => e.stopPropagation()}>
             <img src={selectedImage} alt="Tatuaje" className="max-w-full max-h-[90vh] object-contain rounded-2xl" />
-              <button onClick={closeImageModal} className="absolute top-4 right-4 bg-accent-pink text-white p-3 rounded-full">
+            <button onClick={closeImageModal} className="absolute top-4 right-4 bg-accent-pink text-white p-3 rounded-full">
               ✕
             </button>
           </div>
