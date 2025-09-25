@@ -109,31 +109,31 @@ const App = () => {
     {
       id: 1,
       name: "Hair Stroke – Hiperrealismo pelo a pelo",
-      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Hair+Stroke",
+      image: "https://i.imgur.com/WX48zNR.jpeg",
       description: "Trazos finos y precisos que imitan cada vello con realismo absoluto. Ideal para un look suave, fresco y 100% natural, incluso sin maquillaje."
     },
     {
       id: 2,
       name: "Messy Brows – Volumen con actitud",
-      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Messy+Brows",
+      image: "https://i.imgur.com/Mwfwdwi.jpeg",
       description: "Un estilo moderno, espontáneo y lleno de vida. Cejas con movimiento, textura y volumen que lucen como recién peinadas… ¡sin hacer nada!"
     },
     {
       id: 3,
       name: "Tupidas y Laminadas – Densidad con brillo",
-      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Tupidas+y+Laminadas",
+      image: "https://i.imgur.com/RgZbWg1.jpeg",
       description: "Combinamos micropigmentación con tratamiento laminado para crear cejas densas, ordenadas y con un acabado brillante y saludable que dura semanas."
     },
     {
       id: 4,
       name: "Powder Brows – Sombreado suave y elegante",
-      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Powder+Brows",
+      image: "https://i.imgur.com/iTPbDvr.png",
       description: "Un relleno difuminado que imita el polvo de cejas, con bordes suaves y color uniforme. Perfecto para un look definido, moderno y natural al mismo tiempo."
     },
     {
       id: 5,
       name: "Estilo Híbrido – Lo mejor de dos mundos",
-      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Estilo+Híbrido",
+      image: "https://i.imgur.com/USQxuTo.png",
       description: "Fusionamos trazos realistas en la parte delantera con sombreado suave en el centro y cola. El equilibrio ideal entre realismo y definición."
     }
   ];
