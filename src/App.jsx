@@ -55,13 +55,13 @@ const App = () => {
     {
       id: 1,
       name: "Blackwork",
-      image: "https://i.imgur.com/dc4nTu9.jpeg",
+      image: "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas."
     },
     {
       id: 2,
       name: "Realismo",
-      image: "https://i.imgur.com/HOFNR5H.jpeg",
+      image: "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada."
     },
     {
@@ -73,13 +73,13 @@ const App = () => {
     {
       id: 4,
       name: "Geométricos",
-      image: "https://i.imgur.com/Ujd8maG.jpeg",
+      image: "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel."
     },
     {
       id: 5,
       name: "Japonés",
-      image: "https://i.imgur.com/X1XXM51.jpeg",
+      image: "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales."
     }
   ];
@@ -108,31 +108,31 @@ const App = () => {
     {
       id: 1,
       name: "Hair Stroke – Hiperrealismo pelo a pelo",
-      image: "https://i.imgur.com/WX48zNR.jpeg",
+      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Hair+Stroke",
       description: "Trazos finos y precisos que imitan cada vello con realismo absoluto. Ideal para un look suave, fresco y 100% natural, incluso sin maquillaje."
     },
     {
       id: 2,
       name: "Messy Brows – Volumen con actitud",
-      image: "https://i.imgur.com/Mwfwdwi.jpeg",
+      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Messy+Brows",
       description: "Un estilo moderno, espontáneo y lleno de vida. Cejas con movimiento, textura y volumen que lucen como recién peinadas… ¡sin hacer nada!"
     },
     {
       id: 3,
       name: "Tupidas y Laminadas – Densidad con brillo",
-      image: "https://i.imgur.com/RgZbWg1.jpeg",
+      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Tupidas+y+Laminadas",
       description: "Combinamos micropigmentación con tratamiento laminado para crear cejas densas, ordenadas y con un acabado brillante y saludable que dura semanas."
     },
     {
       id: 4,
       name: "Powder Brows – Sombreado suave y elegante",
-      image: "https://i.imgur.com/iTPbDvr.png",
+      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Powder+Brows",
       description: "Un relleno difuminado que imita el polvo de cejas, con bordes suaves y color uniforme. Perfecto para un look definido, moderno y natural al mismo tiempo."
     },
     {
       id: 5,
       name: "Estilo Híbrido – Lo mejor de dos mundos",
-      image: "https://i.imgur.com/USQxuTo.png",
+      image: "https://via.placeholder.com/800x800.png/1E0E3E/FFFFFF?text=Estilo+Híbrido",
       description: "Fusionamos trazos realistas en la parte delantera con sombreado suave en el centro y cola. El equilibrio ideal entre realismo y definición."
     }
   ];
