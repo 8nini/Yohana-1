@@ -86,12 +86,11 @@ const App = () => {
   };
 
   const galleryImages = [
-    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1577212820165-499512510092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1624608853174-5a7e7a5a0e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "https://i.imgur.com/PppDLeb.jpeg",
+    "https://i.imgur.com/M0kkHn6.jpeg",
+    "https://i.imgur.com/trNozRZ.jpeg",
+    "https://i.imgur.com/p920JrQ.jpeg",
+    "https://i.imgur.com/0EjSn5r.jpeg"
   ];
 
   const eyebrowStyles = [
@@ -370,7 +369,7 @@ const App = () => {
       </AnimatedSection>
 
       {/* Galería */}
-      <AnimatedSection id="galeria" className="bg-black">
+      <AnimatedSection id="galeria" className="bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
@@ -393,7 +392,7 @@ const App = () => {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Footer */}
       <footer className="bg-black py-12 border-t border-gray-800/50">
