@@ -742,7 +742,7 @@ const App = () => {
 
             <div className="bg-black/40 rounded-3xl p-8 md:p-12 border border-gray-800/50">
               <form
-                action="https://formspree.io/f/TU_ID_FORMSPREE"
+                action="https://formspree.io/f/xyznkvap"
                 method="POST"
                 className="space-y-6"
               >
