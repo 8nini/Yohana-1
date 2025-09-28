@@ -5,21 +5,12 @@ const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [formStatus, setFormStatus] = useState('idle');
   const [simulatorImage, setSimulatorImage] = useState(null);
   const [selectedBodyPart, setSelectedBodyPart] = useState('brazo');
   const [designImage, setDesignImage] = useState(null);
-  const [simulatorResult, setSimulatorResult] = useState(null);
-  const [showSimulator, setShowSimulator] = useState(false);
   const [showWhatsappButton, setShowWhatsappButton] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Scroll progress tracking
   useEffect(() => {
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -59,27 +50,6 @@ const App = () => {
   };
 
   const whatsappLink = `https://wa.me/584242049941?text=Hola%20Sergio,%20vi%20tu%20portafolio%20online%20y%20me%20gustaría%20agendar%20una%20cita%20para%20un%20tatuaje.`;
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormStatus('submitting');
-
-    try {
-      // Aquí implementarías Formspree o similar en producción
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    } catch (error) {
-      setFormStatus('error');
-      setTimeout(() => setFormStatus('idle'), 3000);
-    }
-  };
 
   // Estilos de tatuaje
   const tattooStyles = [
@@ -215,6 +185,19 @@ const App = () => {
     }
   };
 
+  const AnimatedSection = ({ children, id, className }) => (
+    <motion.section
+      id={id}
+      className={`py-20 md:py-28 ${className}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+    >
+      {children}
+    </motion.section>
+  );
+
   return (
     <div className="min-h-screen bg-black text-white font-montserrat">
       {/* Scroll Progress Bar */}
@@ -249,7 +232,7 @@ const App = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-1">
-              {['inicio', 'estilos', 'cejas', 'testimonios', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+              {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
                 <motion.button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -290,7 +273,7 @@ const App = () => {
           {isMenuOpen && (
             <div className="lg:hidden bg-black/95 backdrop-blur-md border-t border-gray-800/50">
               <div className="px-4 py-4 space-y-2">
-                {['inicio', 'estilos', 'cejas', 'testimonios', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+                {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
@@ -382,14 +365,7 @@ const App = () => {
       </section>
 
       {/* Estilos */}
-      <motion.section
-        id="estilos"
-        className="py-20 md:py-28 bg-black"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
-      >
+      <AnimatedSection id="estilos" className="bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -430,17 +406,10 @@ const App = () => {
             ))}
           </motion.div>
         </div>
-      </motion.section>
+      </AnimatedSection>
 
       {/* Estilos de Cejas */}
-      <motion.section
-        id="cejas"
-        className="py-20 md:py-28 bg-gray-900/50"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
-      >
+      <AnimatedSection id="cejas" className="bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -470,17 +439,10 @@ const App = () => {
             ))}
           </motion.div>
         </div>
-      </motion.section>
+      </AnimatedSection>
 
       {/* Testimonios */}
-      <motion.section
-        id="testimonios"
-        className="py-20 md:py-28 bg-black"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
-      >
+      <AnimatedSection id="testimonios" className="bg-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -513,100 +475,10 @@ const App = () => {
             ))}
           </motion.div>
         </div>
-      </motion.section>
-
-      {/* Estilos de Cejas */}
-      <motion.section
-        id="cejas"
-        className="py-20 md:py-28 bg-gray-900/50"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            variants={itemVariants}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent font-playfair">
-              Descubre tu estilo perfecto
-            </h2>
-            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
-              ¿Sueñas con cejas siempre impecables? Combinamos arte, técnica y las últimas tendencias para crear cejas que realzan tu mirada y se adaptan a tu rostro, piel y personalidad.
-            </p>
-          </motion.div>
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={containerVariants}
-          >
-            {eyebrowStyles.map((style) => (
-              <motion.div
-                key={style.id}
-                className="bg-black/40 rounded-2xl p-6 border border-gray-800/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 font-playfair">{style.name}</h3>
-                <p className="text-gray-300 leading-relaxed">{style.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Testimonios */}
-      <motion.section
-        id="testimonios"
-        className="py-20 md:py-28 bg-black"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            variants={itemVariants}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent font-playfair">
-              Lo que dicen mis clientes
-            </h2>
-          </motion.div>
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={containerVariants}
-          >
-            {testimonials.map((testimonial) => (
-              <motion.div
-                key={testimonial.id}
-                className="bg-gray-900/50 rounded-2xl p-6 border border-gray-800/50"
-                variants={itemVariants}
-              >
-                <div className="flex mb-2">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-gray-300 italic mb-4">"{testimonial.text}"</p>
-                <p className="text-white font-semibold">- {testimonial.name}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
+      </AnimatedSection>
 
       {/* Artista */}
-      <motion.section
-        id="artistas"
-        className="py-20 md:py-28 bg-gray-900/50"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
+      <AnimatedSection id="artistas" className="bg-gray-900/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent font-playfair">
@@ -644,17 +516,10 @@ const App = () => {
             </div>
           </div>
         </div>
-      </motion.section>
+      </AnimatedSection>
 
       {/* Galería */}
-      <motion.section
-        id="galeria"
-        className="py-20 md:py-28 bg-black"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
-      >
+      <AnimatedSection id="galeria" className="bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -688,17 +553,10 @@ const App = () => {
             ))}
           </motion.div>
         </div>
-      </motion.section>
+      </AnimatedSection>
 
       {/* Simulador de Tatuajes */}
-      <motion.section
-        id="simulador"
-        className="py-20 md:py-28 bg-gray-900/30"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
+      <AnimatedSection id="simulador" className="bg-gray-900/30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-playfair">
