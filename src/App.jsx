@@ -70,6 +70,7 @@ const App = () => {
     setFormStatus('submitting');
 
     try {
+      // Aquí implementarías Formspree o similar en producción
       await new Promise(resolve => setTimeout(resolve, 1000));
       setFormStatus('success');
       setFormData({ name: '', email: '', message: '' });
