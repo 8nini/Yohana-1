@@ -26,9 +26,11 @@ const App = () => {
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollProgress(progress);
 
+      // Show WhatsApp button after scrolling 300px
       setShowWhatsappButton(window.scrollY > 300);
 
-      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'];
+      // Active section tracking
+      const sections = ['inicio', 'estilos', 'artistas', 'galeria', 'simulador', 'contacto'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -37,6 +39,8 @@ const App = () => {
           const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
+            // Google Analytics: seguimiento de secciones
+            console.log(`Google Analytics: sección vista - ${section}`);
             break;
           }
         }
@@ -74,6 +78,11 @@ const App = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setFormStatus('success');
       setFormData({ name: '', email: '', message: '' });
+
+      // Google Analytics: seguimiento de envío de formulario
+      console.log('Google Analytics: formulario enviado');
+
+      // Reset form after 3 seconds
       setTimeout(() => setFormStatus('idle'), 3000);
     } catch (error) {
       setFormStatus('error');
@@ -86,13 +95,13 @@ const App = () => {
     {
       id: 1,
       name: "Blackwork",
-      image: "https://i.imgur.com/j7Fpyo6.jpeg",
+      image: "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas."
     },
     {
       id: 2,
       name: "Realismo",
-      image: "https://i.imgur.com/HOFNR5H.jpeg",
+      image: "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada."
     },
     {
@@ -104,13 +113,13 @@ const App = () => {
     {
       id: 4,
       name: "Geométricos",
-      image: "https://i.imgur.com/Ujd8maG.jpeg",
+      image: "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel."
     },
     {
       id: 5,
       name: "Japonés",
-      image: "https://i.imgur.com/X1XXM51.jpeg",
+      image: "https://images.unsplash.com/photo-1624608853174-5a7e7a5a0e5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
       description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales."
     }
   ];
@@ -147,7 +156,7 @@ const App = () => {
   const artist = {
     name: "Sergio Fernández",
     specialty: "Artista Principal - Blackouts y Blackwork",
-    image: "https://i.imgur.com/t2rcfkO.png",
+    image: "https://placehold.co/800x600/1a1a1a/ffffff?text=Sergio+Fernández",
     bio: "Tatuador independiente con más de 10 años de experiencia, especializado en Blackouts y Blackwork. Experto en diseños minimalistas y con la capacidad de transformar tus tatuajes viejos en nuevos diseños innovadores. Reconocido por su técnica impecable y atención al detalle.",
     instagram: "@sergiofernandez_tattoo",
     email: "styletattoo86@gmail.com",
@@ -156,11 +165,12 @@ const App = () => {
   };
 
   const galleryImages = [
-    "https://i.imgur.com/PppDLeb.jpeg",
-    "https://i.imgur.com/M0kkHn6.jpeg",
-    "https://i.imgur.com/trNozRZ.jpeg",
-    "https://i.imgur.com/p920JrQ.jpeg",
-    "https://i.imgur.com/0EjSn5r.jpeg"
+    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1577212820165-499512510092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1624608853174-5a7e7a5a0e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   ];
 
   const testimonials = [
@@ -185,13 +195,53 @@ const App = () => {
   ];
 
   const bodyParts = [
-    { id: 'brazo', name: 'Brazo' },
-    { id: 'pierna', name: 'Pierna' },
-    { id: 'pecho', name: 'Pecho' },
-    { id: 'espalda', name: 'Espalda' },
-    { id: 'hombro', name: 'Hombro' },
-    { id: 'antebrazo', name: 'Antebrazo' }
+    { id: 'brazo', name: 'Brazo', image: 'https://placehold.co/400x300/1a1a1a/ffffff?text=Brazo' },
+    { id: 'pierna', name: 'Pierna', image: 'https://placehold.co/400x300/1a1a1a/ffffff?text=Pierna' },
+    { id: 'pecho', name: 'Pecho', image: 'https://placehold.co/400x300/1a1a1a/ffffff?text=Pecho' },
+    { id: 'espalda', name: 'Espalda', image: 'https://placehold.co/400x300/1a1a1a/ffffff?text=Espalda' },
+    { id: 'hombro', name: 'Hombro', image: 'https://placehold.co/400x300/1a1a1a/ffffff?text=Hombro' },
+    { id: 'antebrazo', name: 'Antebrazo', image: 'https://placehold.co/400x300/1a1a1a/ffffff?text=Antebrazo' }
   ];
+
+  const handleSimulatorImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setSimulatorImage(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDesignImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setDesignImage(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const simulateTattoo = () => {
+    if (!simulatorImage || !designImage) {
+      alert('Por favor, selecciona una imagen del cliente y un diseño de tatuaje');
+      return;
+    }
+
+    // Simulación simple: combina las imágenes
+    setSimulatorResult({
+      clientImage: simulatorImage,
+      designImage: designImage,
+      bodyPart: selectedBodyPart,
+      simulatedImage: `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==`
+    });
+
+    // En producción, aquí llamarías a una API de IA para generar la simulación real
+    console.log('Simulando tatuaje en:', selectedBodyPart);
+  };
 
   // Animations
   const containerVariants = {
@@ -249,7 +299,7 @@ const App = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-1">
-              {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+              {['inicio', 'estilos', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
                 <motion.button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -290,7 +340,7 @@ const App = () => {
           {isMenuOpen && (
             <div className="lg:hidden bg-black/95 backdrop-blur-md border-t border-gray-800/50">
               <div className="px-4 py-4 space-y-2">
-                {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+                {['inicio', 'estilos', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
