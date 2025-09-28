@@ -15,6 +15,10 @@ export default {
       },
       backgroundImage: {
         'primary-gradient': 'linear-gradient(to right, #9B51E0, #FF00C7, #00B2FF)',
+      },
+      fontFamily: {
+        'montserrat': ['Montserrat', 'sans-serif'],
+        'playfair': ['Playfair Display', 'serif'],
       }
     },
   },
