@@ -117,7 +117,7 @@ const App = () => {
   const artist = {
     name: "Sergio Fernández",
     specialty: "Artista Principal - Blackouts y Blackwork",
-    image: "https://placehold.co/800x600/1a1a1a/ffffff?text=Sergio+Fernández",
+    image: "https://i.imgur.com/t2rcfkO.png",
     bio: "Tatuador independiente con más de 10 años de experiencia, especializado en Blackouts y Blackwork. Experto en diseños minimalistas y con la capacidad de transformar tus tatuajes viejos en nuevos diseños innovadores. Reconocido por su técnica impecable y atención al detalle.",
     instagram: "@sergiofernandez_tattoo",
     email: "styletattoo86@gmail.com",
@@ -127,12 +127,11 @@ const App = () => {
 
   // Galería con imágenes reales (reemplaza con tus trabajos)
   const galleryImages = [
-    "https://placehold.co/600x600/000000/ffffff?text=Tatuaje+1",
-    "https://placehold.co/600x600/2c2c2c/ffffff?text=Tatuaje+2",
-    "https://placehold.co/600x600/3d3d3d/ffffff?text=Tatuaje+3",
-    "https://placehold.co/600x600/1a1a1a/ffffff?text=Cejas+1",
-    "https://placehold.co/600x600/2a2a2a/ffffff?text=Cejas+2",
-    "https://placehold.co/600x600/444444/ffffff?text=Tatuaje+4"
+    "https://i.imgur.com/PppDLeb.jpeg",
+    "https://i.imgur.com/M0kkHn6.jpeg",
+    "https://i.imgur.com/trNozRZ.jpeg",
+    "https://i.imgur.com/p920JrQ.jpeg",
+    "https://i.imgur.com/0EjSn5r.jpeg"
   ];
 
   // Testimonios reales (reemplaza con testimonios de clientes)
