@@ -1,34 +1,22 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, useScroll } from "framer-motion";
 
 const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [formStatus, setFormStatus] = useState('idle');
-  const [simulatorImage, setSimulatorImage] = useState(null);
-  const [selectedBodyPart, setSelectedBodyPart] = useState('brazo');
-  const [designImage, setDesignImage] = useState(null);
   const [showWhatsappButton, setShowWhatsappButton] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Scroll progress tracking
+  // Scroll tracking
+  const { scrollYProgress } = useScroll();
   useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-
-      // Show WhatsApp button after scrolling 300px
-      setShowWhatsappButton(window.scrollY > 300);
+    const unsubscribe = scrollYProgress.onChange((value) => {
+      setScrollProgress(value * 100);
+      setShowWhatsappButton(value > 0.3);
 
       // Active section tracking
-      const sections = ['inicio', 'estilos', 'artistas', 'galeria', 'simulador', 'contacto'];
+      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -41,11 +29,9 @@ const App = () => {
           }
         }
       }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   const handleImageClick = (image) => setSelectedImage(image);
   const closeImageModal = () => setSelectedImage(null);
@@ -60,86 +46,70 @@ const App = () => {
 
   const whatsappLink = `https://wa.me/584242049941?text=Hola%20Sergio,%20vi%20tu%20portafolio%20online%20y%20me%20gustaría%20agendar%20una%20cita%20para%20un%20tatuaje.`;
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormStatus('submitting');
-
-    try {
-      // Aquí implementarías Formspree o similar en producción
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    } catch (error) {
-      setFormStatus('error');
-      setTimeout(() => setFormStatus('idle'), 3000);
-    }
-  };
-
-  // Estilos de tatuaje
+  // Estilos de tatuaje - IMÁGENES REALES (reemplaza con tus fotos)
   const tattooStyles = [
     {
       id: 1,
       name: "Blackwork",
-      image: "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "https://placehold.co/800x600/000000/ffffff?text=Blackwork+Real",
       description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas."
     },
     {
       id: 2,
       name: "Realismo",
-      image: "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "https://placehold.co/800x600/2c2c2c/ffffff?text=Realismo+Real",
       description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada."
     },
     {
       id: 3,
       name: "Tradicionales",
-      image: "https://images.unsplash.com/photo-1577212820165-499512510092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "https://placehold.co/800x600/3d3d3d/ffffff?text=Tradicionales+Real",
       description: "Estilo clásico americano con líneas gruesas, colores vibrantes y diseños icónicos que trascienden generaciones."
     },
     {
       id: 4,
       name: "Geométricos",
-      image: "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "https://placehold.co/800x600/1a1a1a/ffffff?text=Geométricos+Real",
       description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel."
     },
     {
       id: 5,
       name: "Japonés",
-      image: "https://images.unsplash.com/photo-1624608853174-5a7e7a5a0e5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "https://placehold.co/800x600/2a2a2a/ffffff?text=Japonés+Real",
       description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales."
     }
   ];
 
-  // Estilos de cejas
+  // Estilos de cejas - IMÁGENES REALES
   const eyebrowStyles = [
     {
       id: 1,
       name: "Hair Stroke – Hiperrealismo pelo a pelo",
+      image: "https://placehold.co/400x400/333333/ffffff?text=Hair+Stroke",
       description: "Trazos finos y precisos que imitan cada vello con realismo absoluto. Ideal para un look suave, fresco y 100% natural, incluso sin maquillaje."
     },
     {
       id: 2,
       name: "Messy Brows – Volumen con actitud",
+      image: "https://placehold.co/400x400/444444/ffffff?text=Messy+Brows",
       description: "Un estilo moderno, espontáneo y lleno de vida. Cejas con movimiento, textura y volumen que lucen como recién peinadas… ¡sin hacer nada!"
     },
     {
       id: 3,
       name: "Tupidas y Laminadas – Densidad con brillo",
+      image: "https://placehold.co/400x400/222222/ffffff?text=Tupidas+Laminadas",
       description: "Combinamos micropigmentación con tratamiento laminado para crear cejas densas, ordenadas y con un acabado brillante y saludable que dura semanas."
     },
     {
       id: 4,
       name: "Powder Brows – Sombreado suave y elegante",
+      image: "https://placehold.co/400x400/555555/ffffff?text=Powder+Brows",
       description: "Un relleno difuminado que imita el polvo de cejas, con bordes suaves y color uniforme. Perfecto para un look definido, moderno y natural al mismo tiempo."
     },
     {
       id: 5,
       name: "Estilo Híbrido – Lo mejor de dos mundos",
+      image: "https://placehold.co/400x400/111111/ffffff?text=Estilo+Híbrido",
       description: "Fusionamos trazos realistas en la parte delantera con sombreado suave en el centro y cola. El equilibrio ideal entre realismo y definición."
     }
   ];
@@ -155,82 +125,55 @@ const App = () => {
     experience: "10+ años"
   };
 
+  // Galería con imágenes reales (reemplaza con tus trabajos)
   const galleryImages = [
-    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1577212820165-499512510092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1624608853174-5a7e7a5a0e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "https://placehold.co/600x600/000000/ffffff?text=Tatuaje+1",
+    "https://placehold.co/600x600/2c2c2c/ffffff?text=Tatuaje+2",
+    "https://placehold.co/600x600/3d3d3d/ffffff?text=Tatuaje+3",
+    "https://placehold.co/600x600/1a1a1a/ffffff?text=Cejas+1",
+    "https://placehold.co/600x600/2a2a2a/ffffff?text=Cejas+2",
+    "https://placehold.co/600x600/444444/ffffff?text=Tatuaje+4"
   ];
 
+  // Testimonios reales (reemplaza con testimonios de clientes)
   const testimonials = [
     {
       id: 1,
       name: "María Rodríguez",
-      text: "Sergio transformó completamente mis cejas. Ahora me levanto y ya estoy lista para el día. ¡Totalmente natural!",
+      text: "Las cejas que me hizo Sergio son increíbles. Me levanto y ya estoy lista para el día. Totalmente natural y duraderas.",
       rating: 5
     },
     {
       id: 2,
       name: "Carlos Méndez",
-      text: "Mi tatuaje de blackwork superó todas mis expectativas. La técnica y atención al detalle son increíbles.",
+      text: "Mi tatuaje de blackwork superó todas mis expectativas. La técnica y atención al detalle son increíbles. ¡100% recomendado!",
       rating: 5
     },
     {
       id: 3,
       name: "Ana Silva",
-      text: "Profesionalismo, calidad y resultados espectaculares. ¡100% recomendado!",
+      text: "Profesionalismo, calidad y resultados espectaculares. Sergio es un verdadero artista. Ya voy por mi tercer tatuaje con él.",
       rating: 5
     }
   ];
 
-  const bodyParts = [
-    { id: 'brazo', name: 'Brazo' },
-    { id: 'pierna', name: 'Pierna' },
-    { id: 'pecho', name: 'Pecho' },
-    { id: 'espalda', name: 'Espalda' },
-    { id: 'hombro', name: 'Hombro' },
-    { id: 'antebrazo', name: 'Antebrazo' }
-  ];
-
-  // Animations
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
-
   return (
     <>
-      {/* Schema.org JSON-LD */}
+      {/* Schema.org JSON-LD para SEO avanzado */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "TattooParlor",
           "name": "Sergio Tattoo",
+          "description": "Tatuador profesional especializado en Blackwork, Realismo y cejas en Estado Miranda, Venezuela",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Estado Miranda",
             "addressCountry": "VE"
           },
           "telephone": "+584242049941",
-          "url": "https://yohana-1.vercel.app"
+          "url": "https://yohana-1.vercel.app",
+          "sameAs": ["https://instagram.com/sergiofernandez_tattoo"]
         })}
       </script>
 
@@ -245,11 +188,11 @@ const App = () => {
         `}
       </script>
 
-      {/* Meta Tags SEO Avanzado */}
+      {/* Meta Tags SEO optimizados */}
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content="Sergio Fernández | Tatuador profesional en Estado Miranda, Venezuela. Especialista en Blackwork, Realismo, cejas y transformación de tatuajes. Más de 10 años de experiencia creando arte permanente." />
-      <meta name="keywords" content="tatuador Miranda, tatuajes Caracas, Blackwork Venezuela, Sergio Fernández tattoo, cejas microblading, estudio de tatuajes Venezuela, tatuajes realistas, blackouts" />
+      <meta name="description" content="Sergio Fernández | Tatuador profesional en Estado Miranda, Venezuela. Especialista en Blackwork, Realismo, cejas y transformación de tatuajes. Más de 10 años de experiencia." />
+      <meta name="keywords" content="tatuador Miranda, tatuajes Caracas, Blackwork Venezuela, Sergio Fernández tattoo, cejas microblading, estudio de tatuajes Venezuela" />
       <meta name="author" content="Sergio Fernández" />
       <meta name="robots" content="index, follow" />
       <meta property="og:title" content="Sergio Fernández - Tatuador Profesional | Blackwork & Cejas" />
@@ -259,10 +202,6 @@ const App = () => {
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="es_VE" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Sergio Fernández - Tatuador Profesional" />
-      <meta name="twitter:description" content="Especialista en Blackwork y cejas en Venezuela." />
-      <meta name="twitter:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=Sergio+Tattoo" />
-      <link rel="canonical" href="https://yohana-1.vercel.app" />
       <title>Sergio Tattoo | Tatuador Profesional Venezuela - Blackwork & Cejas</title>
 
       {/* Google Fonts */}
@@ -276,24 +215,15 @@ const App = () => {
         ></div>
 
         {/* Header */}
-        <motion.header
-          className="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800/50"
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <header className="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-20">
               <div className="flex items-center space-x-3">
-                <motion.div
-                  className="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                   <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                   </svg>
-                </motion.div>
+                </div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 bg-clip-text text-transparent font-playfair">
                   Sergio Tattoo
                 </h1>
@@ -301,8 +231,8 @@ const App = () => {
 
               {/* Desktop Navigation */}
               <nav className="hidden lg:flex items-center space-x-1">
-                {['inicio', 'estilos', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
-                  <motion.button
+                {['inicio', 'estilos', 'cejas', 'artistas', 'galeria'].map((section) => (
+                  <button
                     key={section}
                     onClick={() => scrollToSection(section)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
@@ -310,11 +240,9 @@ const App = () => {
                         ? 'bg-red-600 text-white shadow-lg'
                         : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
                     }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                   >
                     {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </motion.button>
+                  </button>
                 ))}
               </nav>
 
@@ -342,7 +270,7 @@ const App = () => {
             {isMenuOpen && (
               <div className="lg:hidden bg-black/95 backdrop-blur-md border-t border-gray-800/50">
                 <div className="px-4 py-4 space-y-2">
-                  {['inicio', 'estilos', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+                  {['inicio', 'estilos', 'cejas', 'artistas', 'galeria'].map((section) => (
                     <button
                       key={section}
                       onClick={() => scrollToSection(section)}
@@ -367,54 +295,28 @@ const App = () => {
               </div>
             )}
           </div>
-        </motion.header>
+        </header>
 
         {/* Hero */}
         <section id="inicio" className="relative h-screen flex items-center justify-center bg-black">
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/80 z-0"></div>
           <img
-            src="https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
-            alt="Fondo estudio"
+            src="https://placehold.co/1920x1080/000000/333333?text=Sergio+Tattoo+Hero"
+            alt="Sergio Fernández - Tatuador Profesional"
             className="absolute inset-0 w-full h-full object-cover opacity-70"
             loading="eager"
-            decoding="async"
           />
-          <motion.div
-            className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 mb-4 leading-tight font-playfair"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
+          <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 mb-4 leading-tight font-playfair">
               Sergio Fernández
-            </motion.h1>
-            <motion.p
-              className="text-lg sm:text-xl md:text-2xl text-red-400 mb-6 font-medium"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-red-400 mb-6 font-medium">
               Artista Principal - Blackouts & Blackwork
-            </motion.p>
-            <motion.p
-              className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-            >
+            </p>
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
               Transformo tus ideas en arte permanente. Especialista en diseños minimalistas y transformación de tatuajes viejos.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-            >
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={whatsappLink}
                 target="_blank"
@@ -429,41 +331,26 @@ const App = () => {
               >
                 Ver Galería
               </button>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </section>
 
-        {/* Estilos */}
-        <motion.section
-          id="estilos"
-          className="py-20 md:py-28 bg-black"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
+        {/* Estilos de Tatuaje */}
+        <section id="estilos" className="py-20 md:py-28 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
+            <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent font-playfair">
                 Estilos de Tatuaje
               </h2>
               <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
                 Especializado en técnicas que marcan tendencia en Venezuela.
               </p>
-            </motion.div>
-            <motion.div
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={containerVariants}
-            >
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {tattooStyles.map((style) => (
-                <motion.div
+                <div
                   key={style.id}
                   className="bg-gray-900/50 rounded-2xl overflow-hidden border border-gray-800/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02 }}
                 >
                   <div className="h-48 overflow-hidden">
                     <img
@@ -471,86 +358,66 @@ const App = () => {
                       alt={style.name}
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                       loading="lazy"
-                      decoding="async"
                     />
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-3 font-playfair">{style.name}</h3>
                     <p className="text-gray-300 leading-relaxed">{style.description}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Estilos de Cejas */}
-        <motion.section
-          id="cejas"
-          className="py-20 md:py-28 bg-gray-900/50"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
+        <section id="cejas" className="py-20 md:py-28 bg-gray-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
+            <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent font-playfair">
                 Descubre tu estilo perfecto
               </h2>
               <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
                 ¿Sueñas con cejas siempre impecables? Combinamos arte, técnica y las últimas tendencias para crear cejas que realzan tu mirada y se adaptan a tu rostro, piel y personalidad.
               </p>
-            </motion.div>
-            <motion.div
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={containerVariants}
-            >
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {eyebrowStyles.map((style) => (
-                <motion.div
+                <div
                   key={style.id}
-                  className="bg-black/40 rounded-2xl p-6 border border-gray-800/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02 }}
+                  className="bg-black/40 rounded-2xl overflow-hidden border border-gray-800/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                 >
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 font-playfair">{style.name}</h3>
-                  <p className="text-gray-300 leading-relaxed">{style.description}</p>
-                </motion.div>
+                  <div className="h-48 overflow-hidden">
+                    <img
+                      src={style.image}
+                      alt={style.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 font-playfair">{style.name}</h3>
+                    <p className="text-gray-300 leading-relaxed">{style.description}</p>
+                  </div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Testimonios */}
-        <motion.section
-          id="testimonios"
-          className="py-20 md:py-28 bg-black"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
+        <section id="testimonios" className="py-20 md:py-28 bg-black">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
+            <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent font-playfair">
                 Lo que dicen mis clientes
               </h2>
-            </motion.div>
-            <motion.div
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={containerVariants}
-            >
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {testimonials.map((testimonial) => (
-                <motion.div
+                <div
                   key={testimonial.id}
                   className="bg-gray-900/50 rounded-2xl p-6 border border-gray-800/50"
-                  variants={itemVariants}
                 >
                   <div className="flex mb-2">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -561,21 +428,14 @@ const App = () => {
                   </div>
                   <p className="text-gray-300 italic mb-4">"{testimonial.text}"</p>
                   <p className="text-white font-semibold">- {testimonial.name}</p>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Artista */}
-        <motion.section
-          id="artistas"
-          className="py-20 md:py-28 bg-gray-900/50"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
+        <section id="artistas" className="py-20 md:py-28 bg-gray-900/50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent font-playfair">
@@ -589,7 +449,6 @@ const App = () => {
                   alt={artist.name}
                   className="w-full h-full object-cover"
                   loading="lazy"
-                  decoding="async"
                 />
               </div>
               <div className="p-8 md:p-12">
@@ -613,183 +472,44 @@ const App = () => {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Galería */}
-        <motion.section
-          id="galeria"
-          className="py-20 md:py-28 bg-black"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
+        <section id="galeria" className="py-20 md:py-28 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
+            <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent font-playfair">
                 Galería de Trabajos
               </h2>
-            </motion.div>
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-              variants={containerVariants}
-            >
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {galleryImages.map((img, i) => (
-                <motion.div
+                <div
                   key={i}
                   className="aspect-square bg-gray-900 rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
                   onClick={() => handleImageClick(img)}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <img
                     src={img}
                     alt={`Trabajo ${i+1}`}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     loading="lazy"
-                    decoding="async"
                   />
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
-          </div>
-        </motion.section>
-
-        {/* Simulador de Tatuajes */}
-        <motion.section
-          id="simulador"
-          className="py-20 md:py-28 bg-gray-900/30"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-playfair">
-                Simulador de Tatuajes
-              </h2>
-              <p className="text-lg md:text-xl text-gray-400">
-                ¡Prueba cómo se vería tu tatuaje antes de hacerlo!
-              </p>
-            </div>
-
-            <div className="bg-black/40 rounded-3xl p-8 md:p-12 border border-gray-800/50">
-              <div className="mb-8">
-                <h3 className="text-xl font-bold mb-4 font-playfair">¿Cómo funciona?</h3>
-                <ol className="list-decimal list-inside space-y-2 text-gray-300">
-                  <li>Sube una foto de ti (con la parte del cuerpo donde quieres el tatuaje)</li>
-                  <li>Selecciona o sube el diseño de tatuaje que deseas</li>
-                  <li>Elige la parte del cuerpo donde irá el tatuaje</li>
-                  <li>¡Haz clic en "Simular" y ve el resultado!</li>
-                </ol>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                <div>
-                  <h4 className="font-bold mb-2 font-playfair">Foto del cliente</h4>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const file = e.target.files[0];
-                      if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => setSimulatorImage(event.target.result);
-                        reader.readAsDataURL(file);
-                      }
-                    }}
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
-                  />
-                  {simulatorImage && (
-                    <div className="mt-4">
-                      <img src={simulatorImage} alt="Cliente" className="w-full h-48 object-cover rounded-lg" />
-                    </div>
-                  )}
-                </div>
-
-                <div>
-                  <h4 className="font-bold mb-2 font-playfair">Diseño de tatuaje</h4>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const file = e.target.files[0];
-                      if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => setDesignImage(event.target.result);
-                        reader.readAsDataURL(file);
-                      }
-                    }}
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
-                  />
-                  {designImage && (
-                    <div className="mt-4">
-                      <img src={designImage} alt="Diseño" className="w-full h-48 object-cover rounded-lg" />
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="mb-8">
-                <h4 className="font-bold mb-2 font-playfair">Parte del cuerpo</h4>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {bodyParts.map((part) => (
-                    <motion.button
-                      key={part.id}
-                      onClick={() => setSelectedBodyPart(part.id)}
-                      className={`p-4 rounded-lg border transition-all duration-300 ${
-                        selectedBodyPart === part.id
-                          ? 'bg-blue-600 border-blue-500 text-white'
-                          : 'bg-gray-800/50 border-gray-700 text-gray-300 hover:bg-gray-700/50'
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <span>{part.name}</span>
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="text-center">
-                <button
-                  onClick={() => {
-                    if (!simulatorImage || !designImage) {
-                      alert('Por favor, selecciona una imagen del cliente y un diseño de tatuaje');
-                      return;
-                    }
-                    alert('¡Simulación completada! En producción, esto mostraría el resultado real.');
-                  }}
-                  className="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 px-8 py-3.5 rounded-full font-bold text-white transition-all duration-300 shadow-xl hover:shadow-2xl"
-                >
-                  Simular Tatuaje
-                </button>
-              </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
-        {/* Formulario de Contacto */}
-        <motion.section
-          id="contacto"
-          className="py-20 md:py-28 bg-gray-900/30"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
+        {/* Contacto */}
+        <section id="contacto" className="py-20 md:py-28 bg-gray-900/30">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent font-playfair">
                 Contacto
               </h2>
               <p className="text-lg md:text-xl text-gray-400">
-                ¿Listo para comenzar tu próximo tatuaje? Envíame un mensaje.
+                ¿Listo para comenzar tu próximo tatuaje o cejas? Envíame un mensaje.
               </p>
             </div>
 
@@ -838,7 +558,7 @@ const App = () => {
                     required
                     rows={5}
                     className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 resize-none"
-                    placeholder="Cuéntame sobre tu idea de tatuaje..."
+                    placeholder="Cuéntame sobre tu idea de tatuaje o cejas..."
                   ></textarea>
                 </div>
 
@@ -868,7 +588,7 @@ const App = () => {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Footer */}
         <footer className="bg-black py-12 border-t border-gray-800/50">
@@ -931,16 +651,12 @@ const App = () => {
                 alt="Trabajo"
                 className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl"
               />
-              <motion.button
+              <button
                 onClick={closeImageModal}
                 className="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </motion.button>
+                ✕
+              </button>
             </div>
           </div>
         )}
