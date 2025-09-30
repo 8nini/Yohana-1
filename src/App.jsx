@@ -28,7 +28,7 @@ const App = () => {
       setShowWhatsappButton(window.scrollY > 300);
       
       // Active section tracking
-      const sections = ['inicio', 'estilos', 'artistas', 'galeria', 'simulador', 'contacto'];
+      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -301,7 +301,7 @@ const App = () => {
               
               {/* Desktop Navigation */}
               <nav className="hidden lg:flex items-center space-x-1">
-                {['inicio', 'estilos', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+                {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
                   <motion.button
                     key={section}
                     onClick={() => scrollToSection(section)}
@@ -342,7 +342,7 @@ const App = () => {
             {isMenuOpen && (
               <div className="lg:hidden bg-black/95 backdrop-blur-md border-t border-gray-800/50">
                 <div className="px-4 py-4 space-y-2">
-                  {['inicio', 'estilos', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+                  {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
                     <button
                       key={section}
                       onClick={() => scrollToSection(section)}
