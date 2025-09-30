@@ -1,27 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
 
-// Import local images
-import blackworkImg from './assets/blackwork.jpeg';
-import japonesImg from './assets/japones.jpg';
-import blackoutImg from './assets/blackout.png';
-import geometricosImg from './assets/geometricos.jpeg';
-import realismoImg from './assets/realismo.jpeg';
-import tupidasLaminadasImg from './assets/tupidas-laminadas.jpeg';
-import hibridoImg from './assets/hibrido.png';
-import powderBrowsImg from './assets/powder-brows.png';
-import hairStrokeImg from './assets/hair-stroke.jpeg';
-import messyBrowsImg from './assets/messy-brows.jpeg';
-import galeria1Img from './assets/galeria-1.jpeg';
-import galeria2Img from './assets/galeria-2.jpeg';
-import galeria3Img from './assets/galeria-3.jpeg';
-import galeria4Img from './assets/galeria-4.jpeg';
-import galeria5Img from './assets/galeria-5.jpeg';
-import galeria6Img from './assets/galeria-6.jpg';
-import heroImg from './assets/hero.jpg';
-import sergioImg from './assets/sergio.png';
-
-
 const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,72 +44,70 @@ const App = () => {
     setIsMenuOpen(false);
   };
 
-  const whatsappLink = `https://wa.me/584242049941?text=Hola%20Sergio,%20vi%20tu%20portafolio%20online%20y%20me%20gustaría%20agendar%20una%20cita%20para%20un%20tatuaje.`;
-
-  // Estilos de tatuaje
+  const whatsappLink = `https://wa.me/584242049941?text=Hola%20Sergio,%20vi%20tu%20portafolio%20online%20y%20me%20gustaría%20agendar%20una%20cita%20para%20un%20tatuaje.`;  // Estilos de tatuaje - RUTAS CORREGIDAS
   const tattooStyles = [
     {
       id: 1,
       name: "Blackwork",
-      image: blackworkImg,
+      image: "/images/blackwork.jpg",
       description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas."
     },
     {
       id: 2,
       name: "Realismo",
-      image: realismoImg,
+      image: "/images/realismo.jpg",
       description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada."
     },
     {
       id: 3,
-      name: "Blackout",
-      image: blackoutImg,
+      name: "Tradicionales",
+      image: "/images/tradicionales.jpg",
       description: "Estilo clásico americano con líneas gruesas, colores vibrantes y diseños icónicos que trascienden generaciones."
     },
     {
       id: 4,
       name: "Geométricos",
-      image: geometricosImg,
+      image: "/images/geometricos.jpg",
       description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel."
     },
     {
       id: 5,
       name: "Japonés",
-      image: japonesImg,
+      image: "/images/japones.jpg",
       description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales."
     }
   ];
 
-  // Estilos de cejas
+  // Estilos de cejas - RUTAS CORREGIDAS
   const eyebrowStyles = [
     {
       id: 1,
       name: "Hair Stroke – Hiperrealismo pelo a pelo",
-      image: hairStrokeImg,
+      image: "/images/hair-stroke.jpg",
       description: "Trazos finos y precisos que imitan cada vello con realismo absoluto. Ideal para un look suave, fresco y 100% natural, incluso sin maquillaje."
     },
     {
       id: 2,
       name: "Messy Brows – Volumen con actitud",
-      image: messyBrowsImg,
+      image: "/images/messy-brows.jpg",
       description: "Un estilo moderno, espontáneo y lleno de vida. Cejas con movimiento, textura y volumen que lucen como recién peinadas… ¡sin hacer nada!"
     },
     {
       id: 3,
       name: "Tupidas y Laminadas – Densidad con brillo",
-      image: tupidasLaminadasImg,
+      image: "/images/tupidas-laminadas.jpg",
       description: "Combinamos micropigmentación con tratamiento laminado para crear cejas densas, ordenadas y con un acabado brillante y saludable que dura semanas."
     },
     {
       id: 4,
       name: "Powder Brows – Sombreado suave y elegante",
-      image: powderBrowsImg,
+      image: "/images/powder-brows.jpg",
       description: "Un relleno difuminado que imita el polvo de cejas, con bordes suaves y color uniforme. Perfecto para un look definido, moderno y natural al mismo tiempo."
     },
     {
       id: 5,
       name: "Estilo Híbrido – Lo mejor de dos mundos",
-      image: hibridoImg,
+      image: "/images/hibrido.jpg",
       description: "Fusionamos trazos realistas en la parte delantera con sombreado suave en el centro y cola. El equilibrio ideal entre realismo y definición."
     }
   ];
@@ -138,7 +115,7 @@ const App = () => {
   const artist = {
     name: "Sergio Fernández",
     specialty: "Artista Principal - Blackouts y Blackwork",
-    image: sergioImg,
+    image: "/images/sergio.jpg",
     bio: "Tatuador independiente con más de 10 años de experiencia, especializado en Blackouts y Blackwork. Experto en diseños minimalistas y con la capacidad de transformar tus tatuajes viejos en nuevos diseños innovadores. Reconocido por su técnica impecable y atención al detalle.",
     instagram: "@sergiofernandez_tattoo",
     email: "styletattoo86@gmail.com",
@@ -146,17 +123,17 @@ const App = () => {
     experience: "10+ años"
   };
 
-  // Galería
+  // Galería - RUTAS CORREGIDAS
   const galleryImages = [
-    galeria1Img,
-    galeria2Img,
-    galeria3Img,
-    galeria4Img,
-    galeria5Img,
-    galeria6Img
+    "/images/galeria-1.jpg",
+    "/images/galeria-2.jpg",
+    "/images/galeria-3.jpg",
+    "/images/galeria-4.jpg",
+    "/images/galeria-5.jpg",
+    "/images/galeria-6.jpg"
   ];
 
-  // Testimonios reales (reemplaza con testimonios de clientes)
+  // Testimonios reales
   const testimonials = [
     {
       id: 1,
@@ -176,9 +153,7 @@ const App = () => {
       text: "Profesionalismo, calidad y resultados espectaculares. Sergio es un verdadero artista. Ya voy por mi tercer tatuaje con él.",
       rating: 5
     }
-  ];
-
-  return (
+  ];  return (
     <>
       {/* Schema.org JSON-LD para SEO avanzado */}
       <script type="application/ld+json">
@@ -218,7 +193,7 @@ const App = () => {
       <meta name="robots" content="index, follow" />
       <meta property="og:title" content="Sergio Fernández - Tatuador Profesional | Blackwork & Cejas" />
       <meta property="og:description" content="Transforma tus ideas en arte permanente. Más de 10 años de experiencia en tatuajes y cejas en Venezuela." />
-      <meta property="og:image" content={heroImg} />
+      <meta property="og:image" content="/images/hero.jpg" />
       <meta property="og:url" content="https://yohana-1.vercel.app" />
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="es_VE" />
@@ -322,7 +297,7 @@ const App = () => {
         <section id="inicio" className="relative h-screen flex items-center justify-center bg-black">
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/80 z-0"></div>
           <img
-            src={heroImg}
+            src="/images/hero.jpg"
             alt="Sergio Fernández - Tatuador Profesional"
             className="absolute inset-0 w-full h-full object-cover opacity-70"
             loading="eager"
@@ -633,61 +608,6 @@ const App = () => {
               </a>
             </div>
             <p className="text-gray-500 mt-8">© 2024 Sergio Fernández. Todos los derechos reservados.</p>
-          </div>
-        </footer>
-
-        {/* Floating WhatsApp Button */}
-        {showWhatsappButton && (
-          <motion.a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-40"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            animate={{
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
-          >
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                Contactar por WhatsApp
-              </a>
-            </div>
-            <p className="text-gray-500 mt-8">© 2024 Sergio Fernández. Todos los derechos reservados.</p>
-          </div>
-        </footer>
-
-        {/* Floating WhatsApp Button */}
-        {showWhatsappButton && (
-          <motion.a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-40"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            animate={{
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
-          >
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                Contactar por WhatsApp
-              </a>
-            </div>
           </div>
         </footer>
 
