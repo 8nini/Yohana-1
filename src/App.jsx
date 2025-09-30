@@ -86,31 +86,31 @@ const App = () => {
     {
       id: 1,
       name: "Blackwork",
-      image: "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "/images/blackwork.jpg",
       description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas."
     },
     {
       id: 2,
       name: "Realismo",
-      image: "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "/images/realismo.jpg",
       description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada."
     },
     {
       id: 3,
       name: "Tradicionales",
-      image: "https://images.unsplash.com/photo-1577212820165-499512510092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "/images/tradicionales.jpg",
       description: "Estilo clásico americano con líneas gruesas, colores vibrantes y diseños icónicos que trascienden generaciones."
     },
     {
       id: 4,
       name: "Geométricos",
-      image: "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "/images/geometricos.jpg",
       description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel."
     },
     {
       id: 5,
       name: "Japonés",
-      image: "https://images.unsplash.com/photo-1624608853174-5a7e7a5a0e5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      image: "/images/japones.jpg",
       description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales."
     }
   ];
@@ -120,26 +120,31 @@ const App = () => {
     {
       id: 1,
       name: "Hair Stroke – Hiperrealismo pelo a pelo",
+      image: "/images/hair-stroke.jpg",
       description: "Trazos finos y precisos que imitan cada vello con realismo absoluto. Ideal para un look suave, fresco y 100% natural, incluso sin maquillaje."
     },
     {
       id: 2,
       name: "Messy Brows – Volumen con actitud",
+      image: "/images/messy-brows.jpg",
       description: "Un estilo moderno, espontáneo y lleno de vida. Cejas con movimiento, textura y volumen que lucen como recién peinadas… ¡sin hacer nada!"
     },
     {
       id: 3,
       name: "Tupidas y Laminadas – Densidad con brillo",
+      image: "/images/tupidas-laminadas.jpg",
       description: "Combinamos micropigmentación con tratamiento laminado para crear cejas densas, ordenadas y con un acabado brillante y saludable que dura semanas."
     },
     {
       id: 4,
       name: "Powder Brows – Sombreado suave y elegante",
+      image: "/images/powder-brows.jpg",
       description: "Un relleno difuminado que imita el polvo de cejas, con bordes suaves y color uniforme. Perfecto para un look definido, moderno y natural al mismo tiempo."
     },
     {
       id: 5,
       name: "Estilo Híbrido – Lo mejor de dos mundos",
+      image: "/images/hibrido.jpg",
       description: "Fusionamos trazos realistas en la parte delantera con sombreado suave en el centro y cola. El equilibrio ideal entre realismo y definición."
     }
   ];
@@ -147,7 +152,7 @@ const App = () => {
   const artist = {
     name: "Sergio Fernández",
     specialty: "Artista Principal - Blackouts y Blackwork",
-    image: "https://placehold.co/800x600/1a1a1a/ffffff?text=Sergio+Fernández",
+    image: "/images/sergio.jpg",
     bio: "Tatuador independiente con más de 10 años de experiencia, especializado en Blackouts y Blackwork. Experto en diseños minimalistas y con la capacidad de transformar tus tatuajes viejos en nuevos diseños innovadores. Reconocido por su técnica impecable y atención al detalle.",
     instagram: "@sergiofernandez_tattoo",
     email: "styletattoo86@gmail.com",
@@ -156,12 +161,12 @@ const App = () => {
   };
 
   const galleryImages = [
-    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1585903651295-5e275132259d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1577212820165-499512510092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1599644196928-6f2be051114d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1624608853174-5a7e7a5a0e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "/images/galeria-1.jpg",
+    "/images/galeria-2.jpg",
+    "/images/galeria-3.jpg",
+    "/images/galeria-4.jpg",
+    "/images/galeria-5.jpg",
+    "/images/galeria-6.jpg"
   ];
 
   const testimonials = [
@@ -254,14 +259,14 @@ const App = () => {
       <meta name="robots" content="index, follow" />
       <meta property="og:title" content="Sergio Fernández - Tatuador Profesional | Blackwork & Cejas" />
       <meta property="og:description" content="Transforma tus ideas en arte permanente. Más de 10 años de experiencia en tatuajes y cejas en Venezuela." />
-      <meta property="og:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=Sergio+Tattoo" />
+      <meta property="og:image" content="/images/hero.jpg" />
       <meta property="og:url" content="https://yohana-1.vercel.app" />
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="es_VE" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Sergio Fernández - Tatuador Profesional" />
       <meta name="twitter:description" content="Especialista en Blackwork y cejas en Venezuela." />
-      <meta name="twitter:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=Sergio+Tattoo" />
+      <meta name="twitter:image" content="/images/hero.jpg" />
       <link rel="canonical" href="https://yohana-1.vercel.app" />
       <title>Sergio Tattoo | Tatuador Profesional Venezuela - Blackwork & Cejas</title>
 
@@ -373,7 +378,7 @@ const App = () => {
         <section id="inicio" className="relative h-screen flex items-center justify-center bg-black">
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/80 z-0"></div>
           <img 
-            src="https://images.unsplash.com/photo-1615393009319-51a6218560ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+            src="/images/hero.jpg"
             alt="Fondo estudio" 
             className="absolute inset-0 w-full h-full object-cover opacity-70"
             loading="eager"
