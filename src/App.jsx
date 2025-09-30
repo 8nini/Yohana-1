@@ -168,7 +168,7 @@ const App = () => {
             "addressCountry": "VE"
           },
           "telephone": "+584242049941",
-          "url": "https://yohana-1.vercel.app",
+          "url": "https://sergio-1.vercel.app",
           "sameAs": ["https://instagram.com/sergiofernandez_tattoo"]
         })}
       </script>
@@ -194,7 +194,7 @@ const App = () => {
       <meta property="og:title" content="Sergio Fernández - Tatuador Profesional | Blackwork & Cejas" />
       <meta property="og:description" content="Transforma tus ideas en arte permanente. Más de 10 años de experiencia en tatuajes y cejas en Venezuela." />
       <meta property="og:image" content="/images/hero.jpg" />
-      <meta property="og:url" content="https://yohana-1.vercel.app" />
+      <meta property="og:url" content="https://sergio-1.vercel.app" />
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="es_VE" />
       <meta name="twitter:card" content="summary_large_image" />
