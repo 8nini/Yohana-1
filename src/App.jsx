@@ -470,11 +470,11 @@ const App = () => {
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="h-48 overflow-hidden">
+                  <div className="h-48 bg-gray-900 flex items-center justify-center">
                     <img 
                       src={style.image} 
                       alt={style.name} 
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                      className="max-h-full max-w-full object-contain transition-transform duration-700 hover:scale-110"
                       loading="lazy"
                       decoding="async"
                     />
@@ -521,11 +521,11 @@ const App = () => {
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="h-48 overflow-hidden">
+                  <div className="h-48 bg-gray-900 flex items-center justify-center">
                     <img
                       src={style.image}
                       alt={style.name}
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                      className="max-h-full max-w-full object-contain transition-transform duration-700 hover:scale-110"
                       loading="lazy"
                       decoding="async"
                     />
@@ -656,7 +656,7 @@ const App = () => {
               {galleryImages.map((img, i) => (
                 <motion.div 
                   key={i} 
-                  className="aspect-square bg-gray-900 rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
+                  className="aspect-square bg-gray-900 rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center"
                   onClick={() => handleImageClick(img)}
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
@@ -665,7 +665,7 @@ const App = () => {
                   <img 
                     src={img} 
                     alt={`Trabajo ${i+1}`} 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-110"
                     loading="lazy"
                     decoding="async"
                   />
