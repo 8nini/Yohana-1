@@ -517,12 +517,23 @@ const App = () => {
               {eyebrowStyles.map((style) => (
                 <motion.div 
                   key={style.id} 
-                  className="bg-black/40 rounded-2xl p-6 border border-gray-800/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="bg-gray-900/50 rounded-2xl overflow-hidden border border-gray-800/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 font-playfair">{style.name}</h3>
-                  <p className="text-gray-300 leading-relaxed">{style.description}</p>
+                  <div className="h-48 overflow-hidden">
+                    <img
+                      src={style.image}
+                      alt={style.name}
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 font-playfair">{style.name}</h3>
+                    <p className="text-gray-300 leading-relaxed">{style.description}</p>
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
