@@ -800,8 +800,7 @@ const App = () => {
             
             <div className="bg-black/40 rounded-3xl p-8 md:p-12 border border-gray-800/50">
               <form 
-                action="https://formspree.io/f/TU_ID_FORMSPREE" 
-                method="POST"
+                onSubmit={handleSubmit}
                 className="space-y-6"
               >
                 <div className="grid md:grid-cols-2 gap-6">
@@ -814,6 +813,8 @@ const App = () => {
                       id="name"
                       name="name"
                       required
+                      value={formData.name}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400"
                       placeholder="Tu nombre"
                     />
@@ -827,6 +828,8 @@ const App = () => {
                       id="email"
                       name="email"
                       required
+                      value={formData.email}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400"
                       placeholder="tu@email.com"
                     />
@@ -842,6 +845,8 @@ const App = () => {
                     name="message"
                     required
                     rows={5}
+                    value={formData.message}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 resize-none"
                     placeholder="Cuéntame sobre tu idea de tatuaje..."
                   ></textarea>
