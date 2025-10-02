@@ -105,7 +105,7 @@ const App = () => {
     experience: "10+ años"
   };
 
-  const galleryImages = ["/images/galeria-1.jpg", "/images/galeria2.jpg", "/images/galeria3.jpg", "/images/galeria4.jpg", "/images/galeria5.jpg", "/images/galeria-6.jpg"];
+  const galleryImages = ["/images/galeria-1.jpg", "/images/galeria-2.jpg", "/images/galeria-3.jpg", "/images/galeria-4.jpg"];
 
   const testimonials = [
     { id: 1, name: "María Rodríguez", text: "Sergio transformó completamente mis cejas. Ahora me levanto y ya estoy lista para el día. ¡Totalmente natural!", rating: 5 },
