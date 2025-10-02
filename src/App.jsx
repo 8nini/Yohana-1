@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useForm, ValidationError } from '@formspree/react';
+import Draggable from 'react-draggable';
 
 const App = () => {
   const [state, handleSubmit] = useForm("YOUR_FORM_ID");
@@ -10,6 +11,8 @@ const App = () => {
   const [simulatorImage, setSimulatorImage] = useState(null);
   const [selectedBodyPart, setSelectedBodyPart] = useState('brazo');
   const [designImage, setDesignImage] = useState(null);
+  const [tattooSize, setTattooSize] = useState(100);
+  const constraintsRef = useRef(null);
   const [showWhatsappButton, setShowWhatsappButton] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -54,27 +57,40 @@ const App = () => {
 
   const whatsappLink = `https://wa.me/584242049941?text=Hola%20Sergio,%20vi%20tu%20portafolio%20online%20y%20me%20gustaría%20agendar%20una%20cita%20para%20un%20tatuaje.`;
 
+  const handleSimulatorImageUpload = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setSimulatorImage(event.target.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const handleDesignSelect = (imageSrc) => {
+    setDesignImage(imageSrc);
+  };
 
   const tattooStyles = [
-    { id: 1, name: "Blackwork", image: "/images/blackwork.jpg", description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas." },
-    { id: 2, name: "Realismo", image: "/images/realismo.jpg", description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada." },
-    { id: 3, name: "Tradicionales", image: "/images/tradicionales.jpg", description: "Estilo clásico americano con líneas gruesas, colores vibrantes y diseños icónicos que trascienden generaciones." },
-    { id: 4, name: "Geométricos", image: "/images/geometricos.jpg", description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel." },
-    { id: 5, name: "Japonés", image: "/images/japones.jpg", description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales." }
+    { id: 1, name: "Blackwork", image: "/images/blackwork.webp", description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas." },
+    { id: 2, name: "Realismo", image: "/images/realismo.webp", description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada." },
+    { id: 3, name: "Tradicionales", image: "/images/tradicionales.webp", description: "Estilo clásico americano con líneas gruesas, colores vibrantes y diseños icónicos que trascienden generaciones." },
+    { id: 4, name: "Geométricos", image: "/images/geometricos.webp", description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel." },
+    { id: 5, name: "Japonés", image: "/images/japones.webp", description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales." }
   ];
 
   const eyebrowStyles = [
-    { id: 1, name: "Hair Stroke – Hiperrealismo pelo a pelo", image: "/images/hair-stroke.jpg", description: "Trazos finos y precisos que imitan cada vello con realismo absoluto. Ideal para un look suave, fresco y 100% natural, incluso sin maquillaje." },
-    { id: 2, name: "Messy Brows – Volumen con actitud", image: "/images/messy-brows.jpg", description: "Un estilo moderno, espontáneo y lleno de vida. Cejas con movimiento, textura y volumen que lucen como recién peinadas… ¡sin hacer nada!" },
-    { id: 3, name: "Tupidas y Laminadas – Densidad con brillo", image: "/images/tupidas-laminadas.jpg", description: "Combinamos micropigmentación con tratamiento laminado para crear cejas densas, ordenadas y con un acabado brillante y saludable que dura semanas." },
-    { id: 4, name: "Powder Brows – Sombreado suave y elegante", image: "/images/powder-brows.jpg", description: "Un relleno difuminado que imita el polvo de cejas, con bordes suaves y color uniforme. Perfecto para un look definido, moderno y natural al mismo tiempo." },
-    { id: 5, name: "Estilo Híbrido – Lo mejor de dos mundos", image: "/images/hibrido.jpg", description: "Fusionamos trazos realistas en la parte delantera con sombreado suave en el centro y cola. El equilibrio ideal entre realismo y definición." }
+    { id: 1, name: "Hair Stroke – Hiperrealismo pelo a pelo", image: "/images/hair-stroke.webp", description: "Trazos finos y precisos que imitan cada vello con realismo absoluto. Ideal para un look suave, fresco y 100% natural, incluso sin maquillaje." },
+    { id: 2, name: "Messy Brows – Volumen con actitud", image: "/images/messy-brows.webp", description: "Un estilo moderno, espontáneo y lleno de vida. Cejas con movimiento, textura y volumen que lucen como recién peinadas… ¡sin hacer nada!" },
+    { id: 3, name: "Tupidas y Laminadas – Densidad con brillo", image: "/images/tupidas-laminadas.webp", description: "Combinamos micropigmentación con tratamiento laminado para crear cejas densas, ordenadas y con un acabado brillante y saludable que dura semanas." },
+    { id: 4, name: "Powder Brows – Sombreado suave y elegante", image: "/images/powder-brows.webp", description: "Un relleno difuminado que imita el polvo de cejas, con bordes suaves y color uniforme. Perfecto para un look definido, moderno y natural al mismo tiempo." },
+    { id: 5, name: "Estilo Híbrido – Lo mejor de dos mundos", image: "/images/hibrido.webp", description: "Fusionamos trazos realistas en la parte delantera con sombreado suave en el centro y cola. El equilibrio ideal entre realismo y definición." }
   ];
 
   const artist = {
     name: "Sergio Fernández",
     specialty: "Artista Principal - Blackouts y Blackwork",
-    image: "/images/sergio.jpg",
+    image: "/images/sergio.webp",
     bio: "Tatuador independiente con más de 10 años de experiencia, especializado en Blackouts y Blackwork. Experto en diseños minimalistas y con la capacidad de transformar tus tatuajes viejos en nuevos diseños innovadores. Reconocido por su técnica impecable y atención al detalle.",
     instagram: "@sergiofernandez_tattoo",
     email: "styletattoo86@gmail.com",
@@ -83,10 +99,10 @@ const App = () => {
   };
 
   const galleryImages = [
-    { src: "/images/galeria-1.jpg", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
-    { src: "/images/galeria-2.jpg", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
-    { src: "/images/galeria-3.jpg", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
-    { src: "/images/galeria-4.jpg", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
+    { src: "/images/galeria-1.webp", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
+    { src: "/images/galeria-2.webp", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
+    { src: "/images/galeria-3.webp", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
+    { src: "/images/galeria-4.webp", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
   ];
 
   const testimonials = [
@@ -279,7 +295,7 @@ const App = () => {
         <section id="inicio" className="relative h-screen flex items-center justify-center bg-background">
           <div className="absolute inset-0 bg-gradient-to-b from-background/20 to-background/80 z-0"></div>
           <img 
-            src="/images/hero.jpg"
+            src="/images/hero.webp"
             alt="Fondo estudio" 
             className="absolute inset-0 w-full h-full object-cover opacity-30"
             loading="eager"
@@ -493,6 +509,90 @@ const App = () => {
                 </motion.div>
               ))}
             </motion.div>
+          </div>
+        </motion.section>
+
+        <motion.section
+          id="simulador"
+          className="py-20 md:py-28 bg-card-bg"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Simulador de Tatuajes</h2>
+              <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
+                ¿No estás seguro de cómo se verá? Sube una foto de la parte de tu cuerpo que quieres tatuar y prueba cómo quedarían nuestros diseños.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Columna de Controles */}
+              <div className="lg:col-span-1 space-y-8">
+                <div>
+                  <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">1. Sube tu Foto</h3>
+                  <div className="bg-background rounded-2xl p-6 border border-background/50">
+                    <label htmlFor="simulator-upload" className="cursor-pointer block text-center border-2 border-dashed border-primary-accent/50 rounded-xl py-10 px-4 hover:bg-primary-accent/10 transition-all">
+                      <svg className="w-12 h-12 mx-auto text-primary-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
+                      <span className="mt-2 block text-sm font-semibold text-primary-accent">
+                        {simulatorImage ? "Cambiar foto" : "Seleccionar una foto"}
+                      </span>
+                    </label>
+                    <input id="simulator-upload" type="file" accept="image/*" className="hidden" onChange={handleSimulatorImageUpload} />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">2. Elige un Diseño</h3>
+                  <div className="grid grid-cols-3 gap-2 bg-background rounded-2xl p-4 border border-background/50 max-h-64 overflow-y-auto">
+                    {galleryImages.map((img, i) => (
+                      <div
+                        key={i}
+                        className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${designImage === img.src ? 'border-primary-accent' : 'border-transparent'}`}
+                        onClick={() => handleDesignSelect(img.src)}
+                      >
+                        <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">3. Ajusta el Tamaño</h3>
+                   <div className="bg-background rounded-2xl p-6 border border-background/50">
+                    <input
+                      type="range"
+                      min="20"
+                      max="200"
+                      value={tattooSize}
+                      onChange={(e) => setTattooSize(e.target.value)}
+                      className="w-full h-2 bg-primary-accent/20 rounded-lg appearance-none cursor-pointer"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Columna del Simulador */}
+              <div className="lg:col-span-2 bg-background rounded-2xl p-4 border border-background/50 min-h-[400px] lg:min-h-[600px] flex items-center justify-center">
+                <div ref={constraintsRef} className="relative w-full h-full overflow-hidden">
+                  {simulatorImage ? (
+                    <img src={simulatorImage} alt="Parte del cuerpo para simular tatuaje" className="w-full h-full object-contain" />
+                  ) : (
+                     <div className="flex flex-col items-center justify-center h-full text-text-secondary">
+                        <svg className="w-24 h-24 text-primary-accent/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6l.293-.293a1 1 0 011.414 0L18 10M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        <p className="mt-4 font-semibold">Sube una foto para empezar</p>
+                     </div>
+                  )}
+                  {simulatorImage && designImage && (
+                    <Draggable bounds="parent" nodeRef={useRef(null)}>
+                      <div className="absolute cursor-move" style={{ width: `${tattooSize}px`, height: 'auto' }}>
+                        <img src={designImage} alt="Diseño de tatuaje para simular" className="w-full h-full object-contain pointer-events-none" />
+                      </div>
+                    </Draggable>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </motion.section>
 
