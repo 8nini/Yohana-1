@@ -1,16 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useForm, ValidationError } from '@formspree/react';
 
 const App = () => {
+  const [state, handleSubmit] = useForm("YOUR_FORM_ID");
   const [selectedImage, setSelectedImage] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [formStatus, setFormStatus] = useState('idle');
   const [simulatorImage, setSimulatorImage] = useState(null);
   const [selectedBodyPart, setSelectedBodyPart] = useState('brazo');
   const [designImage, setDesignImage] = useState(null);
@@ -58,25 +54,6 @@ const App = () => {
 
   const whatsappLink = `https://wa.me/584242049941?text=Hola%20Sergio,%20vi%20tu%20portafolio%20online%20y%20me%20gustaría%20agendar%20una%20cita%20para%20un%20tatuaje.`;
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormStatus('submitting');
-    
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    } catch (error) {
-      setFormStatus('error');
-      setTimeout(() => setFormStatus('idle'), 3000);
-    }
-  };
 
   const tattooStyles = [
     { id: 1, name: "Blackwork", image: "/images/blackwork.jpg", description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas." },
@@ -105,7 +82,12 @@ const App = () => {
     experience: "10+ años"
   };
 
-  const galleryImages = ["/images/galeria-1.jpg", "/images/galeria-2.jpg", "/images/galeria-3.jpg", "/images/galeria-4.jpg"];
+  const galleryImages = [
+    { src: "/images/galeria-1.jpg", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
+    { src: "/images/galeria-2.jpg", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
+    { src: "/images/galeria-3.jpg", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
+    { src: "/images/galeria-4.jpg", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
+  ];
 
   const testimonials = [
     { id: 1, name: "María Rodríguez", text: "Sergio transformó completamente mis cejas. Ahora me levanto y ya estoy lista para el día. ¡Totalmente natural!", rating: 5 },
@@ -136,12 +118,23 @@ const App = () => {
           "@context": "https://schema.org",
           "@type": "TattooParlor",
           "name": "Sergio Tattoo",
-          "description": "Tatuador profesional especializado en Blackwork, Realismo y cejas en Estado Miranda, Venezuela",
+          "description": "Tatuador profesional en Caracas y Miranda, Venezuela. Especialista en Blackwork, Realismo y cejas.",
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Estado Miranda",
+            "addressLocality": "Caracas",
+            "addressRegion": "Distrito Capital",
             "addressCountry": "VE"
           },
+          "areaServed": [
+            {
+              "@type": "State",
+              "name": "Miranda"
+            },
+            {
+              "@type": "City",
+              "name": "Caracas"
+            }
+          ],
           "telephone": "+584242049941",
           "url": "https://yohana-1.vercel.app",
           "sameAs": ["https://instagram.com/sergiofernandez_tattoo"],
@@ -169,23 +162,23 @@ const App = () => {
       {/* Meta Tags SEO optimizados */}
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content="Sergio Fernández | Tatuador profesional en Estado Miranda, Venezuela. Especialista en Blackwork, Realismo, cejas y transformación de tatuajes. Más de 10 años de experiencia creando arte permanente." />
-      <meta name="keywords" content="tatuador Miranda, tatuajes Caracas, Blackwork Venezuela, Sergio Fernández tattoo, cejas microblading, estudio de tatuajes Venezuela, tatuajes realistas, blackouts, tatuajes tradicionales" />
+      <meta name="description" content="Tatuador profesional en Caracas y Miranda con más de 10 años de experiencia. Especialista en Blackwork, Realismo, cejas y transformación de tatuajes." />
+      <meta name="keywords" content="tatuador en Caracas, tatuador en Miranda, tatuajes Distrito Capital, Blackwork Venezuela, Sergio Fernández tattoo, cejas microblading, estudio de tatuajes Venezuela, tatuajes realistas" />
       <meta name="author" content="Sergio Fernández" />
       <meta name="robots" content="index, follow" />
       <meta name="googlebot" content="index, follow" />
-      <meta property="og:title" content="Sergio Fernández - Tatuador Profesional | Blackwork & Cejas" />
-      <meta property="og:description" content="Transforma tus ideas en arte permanente. Más de 10 años de experiencia en tatuajes y cejas en Venezuela. Especialista en Blackwork, Realismo y transformación de tatuajes." />
+      <meta property="og:title" content="Sergio Fernández - Tatuador Profesional en Caracas y Miranda" />
+      <meta property="og:description" content="Transforma tus ideas en arte permanente con un especialista en Blackwork y Realismo en Caracas y Miranda." />
       <meta property="og:image" content="https://yohana-1.vercel.app/images/hero.jpg" />
       <meta property="og:url" content="https://yohana-1.vercel.app" />
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="es_VE" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Sergio Fernández - Tatuador Profesional" />
-      <meta name="twitter:description" content="Especialista en Blackwork y transformación de tatuajes en Venezuela." />
+      <meta name="twitter:title" content="Sergio Fernández - Tatuador Profesional en Caracas y Miranda" />
+      <meta name="twitter:description" content="Especialista en Blackwork y transformación de tatuajes en Caracas y Miranda, Venezuela." />
       <meta name="twitter:image" content="https://yohana-1.vercel.app/images/hero.jpg" />
       <link rel="canonical" href="https://yohana-1.vercel.app" />
-      <title>Sergio Tattoo | Tatuador Profesional Venezuela - Blackwork & Cejas</title>
+      <title>Tatuador en Caracas y Miranda - Sergio Tattoo | Blackwork & Cejas</title>
 
       <div className="min-h-screen bg-background text-text-primary font-inter">
         <div 
@@ -357,7 +350,7 @@ const App = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div className="text-center mb-16" variants={itemVariants}>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Estilos de Tatuaje</h2>
-              <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">Especializado en técnicas que marcan tendencia en Venezuela.</p>
+              <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">Especializado en técnicas que marcan tendencia en Caracas y Miranda.</p>
             </motion.div>
             <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={containerVariants}>
               {tattooStyles.map((style) => (
@@ -480,22 +473,23 @@ const App = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
+          aria-labelledby="gallery-heading"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div className="text-center mb-16" variants={itemVariants}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Galería de Trabajos</h2>
+              <h2 id="gallery-heading" className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Galería de Trabajos</h2>
             </motion.div>
             <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" variants={containerVariants}>
               {galleryImages.map((img, i) => (
                 <motion.div 
                   key={i} 
                   className="aspect-square bg-card-bg rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center"
-                  onClick={() => handleImageClick(img)}
+                  onClick={() => handleImageClick(img.src)}
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <img src={img} alt={`Trabajo ${i+1}`} className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-110" loading="lazy" decoding="async" />
+                  <img src={img.src} alt={img.alt} className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-110" loading="lazy" decoding="async" />
                 </motion.div>
               ))}
             </motion.div>
@@ -516,25 +510,36 @@ const App = () => {
               <p className="text-lg md:text-xl text-text-secondary">¿Listo para comenzar tu próximo tatuaje? Envíame un mensaje.</p>
             </div>
             <div className="bg-background rounded-3xl p-8 md:p-12 border border-background/50">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Nombre completo</label>
-                    <input type="text" id="name" name="name" required value={formData.name} onChange={handleInputChange} className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="Tu nombre" />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Correo electrónico</label>
-                    <input type="email" id="email" name="email" required value={formData.email} onChange={handleInputChange} className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="tu@email.com" />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Mensaje</label>
-                  <textarea id="message" name="message" required rows={5} value={formData.message} onChange={handleInputChange} className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary resize-none" placeholder="Cuéntame sobre tu idea de tatuaje..."></textarea>
-                </div>
+              {state.succeeded ? (
                 <div className="text-center">
-                  <button type="submit" className="bg-primary-accent hover:bg-opacity-80 px-8 py-3.5 rounded-full font-bold text-background transition-all duration-300 shadow-xl">Enviar Mensaje</button>
+                  <h3 className="text-2xl font-bold text-primary-accent mb-4">¡Gracias por tu mensaje!</h3>
+                  <p className="text-text-secondary">Me pondré en contacto contigo pronto.</p>
                 </div>
-              </form>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Nombre completo</label>
+                      <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="Tu nombre" />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Correo electrónico</label>
+                      <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="tu@email.com" />
+                      <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm mt-1" />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Mensaje</label>
+                    <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary resize-none" placeholder="Cuéntame sobre tu idea de tatuaje..."></textarea>
+                    <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-sm mt-1" />
+                  </div>
+                  <div className="text-center">
+                    <button type="submit" disabled={state.submitting} className="bg-primary-accent hover:bg-opacity-80 px-8 py-3.5 rounded-full font-bold text-background transition-all duration-300 shadow-xl disabled:bg-gray-500">
+                      {state.submitting ? "Enviando..." : "Enviar Mensaje"}
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </motion.section>
@@ -542,7 +547,7 @@ const App = () => {
         <footer className="bg-background py-12 border-t border-card-bg/50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 className="text-2xl md:text-3xl font-bold text-primary-accent font-poppins mb-4">Sergio Tattoo</h3>
-            <p className="text-text-secondary mb-2">Estado Miranda, Venezuela</p>
+            <p className="text-text-secondary mb-2">Estudio de tatuajes en Caracas y Miranda, Venezuela</p>
             <p className="text-text-secondary mb-4">Tel: {artist.phone}</p>
             <div className="mt-6">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center bg-green-600 hover:bg-green-700 px-6 py-2.5 rounded-full font-semibold text-white transition-all duration-300">

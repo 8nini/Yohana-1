@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import App from './App';
 import { expect, test } from 'vitest';
 
@@ -10,15 +10,23 @@ test('should render the Cejas link in the navigation', () => {
   expect(screen.queryByRole('button', { name: /cejas/i })).toBeInTheDocument();
 });
 
-test('should render gallery images with correct src attributes', () => {
+test('should render gallery images with correct src and alt attributes', () => {
   render(<App />);
 
-  const galleryImages = screen.getAllByAltText(/Trabajo \d+/i);
+  const galleryRegion = screen.getByRole('region', { name: /Galería de Trabajos/i });
+  const galleryImages = within(galleryRegion).getAllByRole('img');
 
   expect(galleryImages).toHaveLength(4);
 
+  const expectedImages = [
+    { src: "/images/galeria-1.jpg", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
+    { src: "/images/galeria-2.jpg", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
+    { src: "/images/galeria-3.jpg", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
+    { src: "/images/galeria-4.jpg", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
+  ];
+
   galleryImages.forEach((img, i) => {
-    // The image alt text is "Trabajo i+1", so we expect the src to be "galeria-i+1.jpg"
-    expect(img).toHaveAttribute('src', `/images/galeria-${i + 1}.jpg`);
+    expect(img).toHaveAttribute('src', expectedImages[i].src);
+    expect(img).toHaveAttribute('alt', expectedImages[i].alt);
   });
 });
