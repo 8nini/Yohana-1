@@ -30,7 +30,7 @@ const App = () => {
       
       setShowWhatsappButton(window.scrollY > 300);
       
-      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'contacto'];
+      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'cuidados', 'inspiracion-ia', 'contacto'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -259,7 +259,7 @@ const App = () => {
               </div>
               
               <nav className="hidden lg:flex items-center space-x-1">
-                {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+                {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'cuidados', 'contacto'].map((section) => (
                   <motion.button
                     key={section}
                     onClick={() => scrollToSection(section)}
@@ -298,7 +298,7 @@ const App = () => {
             {isMenuOpen && (
               <div className="lg:hidden bg-background/95 backdrop-blur-md border-t border-card-bg/50">
                 <div className="px-4 py-4 space-y-2">
-                  {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+                  {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'cuidados', 'contacto'].map((section) => (
                     <button
                       key={section}
                       onClick={() => scrollToSection(section)}
@@ -652,8 +652,136 @@ const App = () => {
         </motion.section>
 
         <motion.section
-          id="inspiracion-ia"
+          id="cuidados"
           className="py-20 md:py-28 bg-background"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div className="text-center mb-16" variants={itemVariants}>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Warriors Cuidados</h2>
+              <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
+                Cuidados Básicos para tu Primer Tatuaje: Tu guía esencial para una curación segura y un resultado perfecto.
+              </p>
+            </motion.div>
+
+            <motion.div className="space-y-12 text-left" variants={containerVariants}>
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">✅ Pasos Diarios para los Primeros 2-4 Semanas</h3>
+                <div className="space-y-4 text-text-secondary">
+                  <div>
+                    <h4 className="font-semibold text-lg text-text-primary">1. Limpieza suave (2 veces al día)</h4>
+                    <ul className="list-disc list-inside ml-4">
+                      <li>Lávate las manos antes de tocar tu tatuaje.</li>
+                      <li>Usa agua tibia y un jabón antibacteriano suave, sin fragancia (ej. Dove Sensitive, Dr. Bronner’s).</li>
+                      <li>Lava con las yemas de los dedos, sin frotar.</li>
+                      <li>Enjuaga bien y seca con toques suaves usando una toalla limpia o papel absorbente.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg text-text-primary">2. Hidratación ligera</h4>
+                    <ul className="list-disc list-inside ml-4">
+                      <li>Aplica una capa fina de crema o pomada para tatuajes (ej. Bepanthen, Aquaphor, o lociones sin perfume).</li>
+                      <li>No uses vaselina ni productos grasos en exceso: pueden atrapar bacterias y bloquear la curación.</li>
+                      <li>Hidrata 2–3 veces al día, solo cuando la piel esté seca.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg text-text-primary">3. Deja que respire</h4>
+                    <ul className="list-disc list-inside ml-4">
+                      <li>Evita cubrir el tatuaje después de las primeras horas (a menos que tu artista indique lo contrario).</li>
+                      <li>Usa ropa holgada y de algodón para reducir la fricción.</li>
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">⚠️ Qué Evitar ABSOLUTAMENTE</h3>
+                <ul className="list-disc list-inside ml-4 space-y-2 text-text-secondary">
+                  <li>No te rasques ni arranques las costras, aunque pique. ¡Puedes perder tinta o dejar cicatrices!</li>
+                  <li>No expongas tu tatuaje al sol directo ni uses bronceadores (ni camas solares).</li>
+                  <li>No nades en piscinas, mar, jacuzzis o saunas durante al menos 4 semanas.</li>
+                  <li>No hagas ejercicio intenso que cause sudoración excesiva en los primeros 5–7 días.</li>
+                </ul>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">🧴 Recomendaciones por Tipo de Piel</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left bg-card-bg rounded-lg">
+                    <thead>
+                      <tr>
+                        <th className="p-4 font-semibold text-text-primary">Tipo de piel</th>
+                        <th className="p-4 font-semibold text-text-primary">Consejo clave</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-t border-background/50">
+                        <td className="p-4 text-text-secondary">Grasa</td>
+                        <td className="p-4 text-text-secondary">Usa humectantes no comedogénicos (que no obstruyan poros).</td>
+                      </tr>
+                      <tr className="border-t border-background/50">
+                        <td className="p-4 text-text-secondary">Seca</td>
+                        <td className="p-4 text-text-secondary">Hidrata más frecuentemente con cremas nutritivas (con aloe, manteca de karité o pantenol).</td>
+                      </tr>
+                      <tr className="border-t border-background/50">
+                        <td className="p-4 text-text-secondary">Sensible</td>
+                        <td className="p-4 text-text-secondary">Elige productos sin fragancia, alcohol ni colorantes. Haz una prueba en otra zona antes de usar.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-sm text-text-secondary mt-2 italic">💡 Todos los tipos de piel deben evitar el sol y mantener una higiene impecable.</p>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">🔍 Señales de Alarma: ¿Cuándo ir al médico?</h3>
+                <p className="mb-4 text-text-secondary">Consulta a un dermatólogo de inmediato si notas:</p>
+                <ul className="list-disc list-inside ml-4 space-y-2 text-text-secondary">
+                  <li>Enrojecimiento que se expande o empeora después del día 3.</li>
+                  <li>Hinchazón, calor intenso o dolor creciente.</li>
+                  <li>Pus amarillo/verde con mal olor.</li>
+                  <li>Fiebre, escalofríos o ganglios inflamados.</li>
+                  <li>Picazón extrema con ampollas o erupciones (puede ser alergia a la tinta).</li>
+                </ul>
+                <p className="mt-4 font-semibold text-red-500">❗ No esperes: una infección no tratada puede dañar tu piel y tu tatuaje.</p>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">⏳ ¿Cuánto tarda en sanar?</h3>
+                <ul className="list-disc list-inside ml-4 space-y-2 text-text-secondary">
+                  <li><strong>Superficialmente:</strong> 2–4 semanas (costras caen, picazón disminuye).</li>
+                  <li><strong>Completamente:</strong> hasta 6 meses (la tinta se fija en las capas profundas de la piel).</li>
+                </ul>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">☀️ Cuidado a Largo Plazo</h3>
+                <p className="mb-2 text-text-secondary">Una vez sano:</p>
+                <ul className="list-disc list-inside ml-4 space-y-2 text-text-secondary">
+                  <li>Siempre usa protector solar (FPS 30+) cuando tu tatuaje esté expuesto al sol.</li>
+                  <li>Hidrata tu piel regularmente para mantener los colores vivos.</li>
+                  <li>Evita cambios bruscos de peso que puedan distorsionar el diseño.</li>
+                </ul>
+              </motion.div>
+
+              <motion.blockquote variants={itemVariants} className="text-center p-6 bg-card-bg border-l-4 border-primary-accent rounded-r-lg">
+                <p className="text-lg italic text-text-secondary">"Sigue las indicaciones de tu artista. Cada tatuador tiene un protocolo basado en su experiencia. Si hay dudas, ¡pregunta! Mejor prevenir que lamentar."</p>
+              </motion.blockquote>
+
+              <motion.p variants={itemVariants} className="text-center font-bold text-lg text-primary-accent">
+                Con estos cuidados, tu tatuaje no solo sanará perfecto, sino que lucirá increíble por muchos años. ¡Disfrútalo con responsabilidad! 🖤
+              </motion.p>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        <motion.section
+          id="inspiracion-ia"
+          className="py-20 md:py-28 bg-card-bg"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -664,7 +792,7 @@ const App = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Inspiración con IA</h2>
               <p className="text-lg md:text-xl text-text-secondary">¿Sin ideas? Describe lo que te gustaría y deja que nuestra IA te dé una sugerencia creativa.</p>
             </div>
-            <div className="bg-card-bg rounded-3xl p-8 md:p-12 border border-card-bg/50">
+            <div className="bg-background rounded-3xl p-8 md:p-12 border border-background/50">
               <form onSubmit={handleAiSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="ai-prompt" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Describe tu idea de tatuaje</label>
@@ -674,7 +802,7 @@ const App = () => {
                     name="ai-prompt"
                     value={aiPrompt}
                     onChange={(e) => setAiPrompt(e.target.value)}
-                    className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary"
+                    className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary"
                     placeholder="Ej: Un lobo aullando a la luna en estilo blackwork"
                   />
                 </div>
@@ -695,7 +823,7 @@ const App = () => {
 
         <motion.section 
           id="contacto" 
-          className="py-20 md:py-28 bg-card-bg"
+          className="py-20 md:py-28 bg-background"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -706,7 +834,7 @@ const App = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Contacto</h2>
               <p className="text-lg md:text-xl text-text-secondary">¿Listo para comenzar tu próximo tatuaje? Envíame un mensaje.</p>
             </div>
-            <div className="bg-background rounded-3xl p-8 md:p-12 border border-background/50">
+            <div className="bg-card-bg rounded-3xl p-8 md:p-12 border border-card-bg/50">
               {state.succeeded ? (
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-primary-accent mb-4">¡Gracias por tu mensaje!</h3>
@@ -717,17 +845,17 @@ const App = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Nombre completo</label>
-                      <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="Tu nombre" />
+                      <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="Tu nombre" />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Correo electrónico</label>
-                      <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="tu@email.com" />
+                      <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="tu@email.com" />
                       <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm mt-1" />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Mensaje</label>
-                    <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary resize-none" placeholder="Cuéntame sobre tu idea de tatuaje..."></textarea>
+                    <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary resize-none" placeholder="Cuéntame sobre tu idea de tatuaje..."></textarea>
                     <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-sm mt-1" />
                   </div>
                   <div className="text-center">
