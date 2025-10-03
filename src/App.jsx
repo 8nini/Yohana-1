@@ -11,10 +11,15 @@ const App = () => {
   const [simulatorImage, setSimulatorImage] = useState(null);
   const [selectedBodyPart, setSelectedBodyPart] = useState('brazo');
   const [designImage, setDesignImage] = useState(null);
+  const [designUrl, setDesignUrl] = useState('');
   const [tattooSize, setTattooSize] = useState(100);
   const constraintsRef = useRef(null);
+  const draggableRef = useRef(null);
   const [showWhatsappButton, setShowWhatsappButton] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [aiPrompt, setAiPrompt] = useState('');
+  const [aiResponse, setAiResponse] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
 
   // Scroll progress tracking
   useEffect(() => {
@@ -25,7 +30,7 @@ const App = () => {
       
       setShowWhatsappButton(window.scrollY > 300);
       
-      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'];
+      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'contacto'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -67,8 +72,36 @@ const App = () => {
     }
   };
 
+  const handleDesignUpload = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setDesignImage(event.target.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
   const handleDesignSelect = (imageSrc) => {
     setDesignImage(imageSrc);
+  };
+
+  const handleAiSubmit = (e) => {
+    e.preventDefault();
+    if (!aiPrompt) return;
+
+    setIsGenerating(true);
+    setAiResponse('');
+
+    setTimeout(() => {
+      const responses = [
+        `Un diseño excelente podría ser un lobo con detalles geométricos en el pelaje, mirando hacia una luna con fases cambiantes. Se vería genial en blackwork.`,
+        `Para un tatuaje de un león, podríamos usar un estilo de realismo para el rostro, pero que se desvanezca en patrones de mandalas en la melena.`,
+        `Una idea creativa para una rosa es diseñarla en estilo tradicional, pero con espinas que se transforman en una serpiente que rodea el tallo.`
+      ];
+      setAiResponse(responses[Math.floor(Math.random() * responses.length)]);
+      setIsGenerating(false);
+    }, 2000);
   };
 
   const tattooStyles = [
@@ -545,16 +578,38 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">2. Elige un Diseño</h3>
-                  <div className="grid grid-cols-3 gap-2 bg-background rounded-2xl p-4 border border-background/50 max-h-64 overflow-y-auto">
-                    {galleryImages.map((img, i) => (
-                      <div
-                        key={i}
-                        className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${designImage === img.src ? 'border-primary-accent' : 'border-transparent'}`}
-                        onClick={() => handleDesignSelect(img.src)}
-                      >
-                        <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
-                      </div>
-                    ))}
+                  <div className="bg-background rounded-2xl p-6 border border-background/50 space-y-4">
+                    <p className="text-sm text-text-secondary text-center">Elige uno de nuestros diseños...</p>
+                    <div className="grid grid-cols-3 gap-2 max-h-48 overflow-y-auto">
+                      {galleryImages.map((img, i) => (
+                        <div
+                          key={i}
+                          className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${designImage === img.src ? 'border-primary-accent' : 'border-transparent'}`}
+                          onClick={() => handleDesignSelect(img.src)}
+                        >
+                          <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-sm text-text-secondary text-center">...o sube el tuyo.</p>
+                    <div>
+                      <label htmlFor="design-upload" className="cursor-pointer text-center w-full block bg-primary-accent/10 hover:bg-primary-accent/20 text-primary-accent font-semibold py-2 px-4 rounded-lg transition-all text-sm">
+                        Subir desde archivo
+                      </label>
+                      <input id="design-upload" type="file" accept="image/*" className="hidden" onChange={handleDesignUpload} />
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="text"
+                        value={designUrl}
+                        onChange={(e) => setDesignUrl(e.target.value)}
+                        placeholder="O pega una URL"
+                        className="w-full px-3 py-2 bg-card-bg/50 border border-card-bg/50 rounded-lg focus:ring-1 focus:ring-primary-accent text-sm"
+                      />
+                      <button onClick={() => setDesignImage(designUrl)} className="p-2 bg-primary-accent rounded-lg text-background hover:bg-opacity-80" aria-label="Cargar diseño desde URL">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div>
@@ -584,14 +639,56 @@ const App = () => {
                      </div>
                   )}
                   {simulatorImage && designImage && (
-                    <Draggable bounds="parent" nodeRef={useRef(null)}>
-                      <div className="absolute cursor-move" style={{ width: `${tattooSize}px`, height: 'auto' }}>
+                    <Draggable bounds="parent" nodeRef={draggableRef}>
+                      <div ref={draggableRef} className="absolute cursor-move" style={{ width: `${tattooSize}px`, height: 'auto' }}>
                         <img src={designImage} alt="Diseño de tatuaje para simular" className="w-full h-full object-contain pointer-events-none" />
                       </div>
                     </Draggable>
                   )}
                 </div>
               </div>
+            </div>
+          </div>
+        </motion.section>
+
+        <motion.section
+          id="inspiracion-ia"
+          className="py-20 md:py-28 bg-background"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Inspiración con IA</h2>
+              <p className="text-lg md:text-xl text-text-secondary">¿Sin ideas? Describe lo que te gustaría y deja que nuestra IA te dé una sugerencia creativa.</p>
+            </div>
+            <div className="bg-card-bg rounded-3xl p-8 md:p-12 border border-card-bg/50">
+              <form onSubmit={handleAiSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="ai-prompt" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Describe tu idea de tatuaje</label>
+                  <input
+                    type="text"
+                    id="ai-prompt"
+                    name="ai-prompt"
+                    value={aiPrompt}
+                    onChange={(e) => setAiPrompt(e.target.value)}
+                    className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary"
+                    placeholder="Ej: Un lobo aullando a la luna en estilo blackwork"
+                  />
+                </div>
+                <div className="text-center">
+                  <button type="submit" disabled={isGenerating} className="bg-primary-accent hover:bg-opacity-80 px-8 py-3.5 rounded-full font-bold text-background transition-all duration-300 shadow-xl disabled:bg-gray-500">
+                    {isGenerating ? "Generando..." : "Obtener Idea"}
+                  </button>
+                </div>
+              </form>
+              {aiResponse && (
+                <div className="mt-8 p-6 bg-background rounded-2xl border border-background/50">
+                  <p className="text-text-secondary text-center italic">{aiResponse}</p>
+                </div>
+              )}
             </div>
           </div>
         </motion.section>
