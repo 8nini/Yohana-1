@@ -1,3 +1,4 @@
+// Trivial change to trigger Vercel deployment
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useForm, ValidationError } from '@formspree/react';
