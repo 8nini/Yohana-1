@@ -673,7 +673,20 @@ const App = () => {
                         placeholder="O pega una URL"
                         className="w-full px-3 py-2 bg-background/50 border border-background/50 rounded-lg focus:ring-1 focus:ring-primary-accent text-sm"
                       />
-                      <button onClick={() => setDesignImage(designUrl)} className="p-2 bg-primary-accent rounded-lg text-background hover:bg-opacity-80" aria-label="Cargar diseño desde URL">
+                      <button
+                        onClick={() => {
+                          const isValidImageUrl = (url) => {
+                            return /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
+                          };
+                          if (isValidImageUrl(designUrl)) {
+                            setDesignImage(designUrl);
+                          } else {
+                            alert('URL inválida. Por favor, introduce una URL de una imagen válida (jpg, jpeg, png, gif, webp).');
+                          }
+                        }}
+                        className="p-2 bg-primary-accent rounded-lg text-background hover:bg-opacity-80"
+                        aria-label="Cargar diseño desde URL"
+                      >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                       </button>
                     </div>
