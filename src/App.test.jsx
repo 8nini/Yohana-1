@@ -31,7 +31,7 @@ test('should render gallery images with correct src and alt attributes', () => {
   });
 });
 
-test('should render the tattoo simulator section correctly', () => {
+test('should render the tattoo simulator section with all controls', () => {
   render(<App />);
 
   // Check for the main heading of the simulator
@@ -42,9 +42,24 @@ test('should render the tattoo simulator section correctly', () => {
   expect(screen.getByRole('heading', { name: /2. Elige un Diseño/i })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: /3. Ajusta el Tamaño/i })).toBeInTheDocument();
 
-  // Check for the upload button
+  // Check for the skin picture upload button
   expect(screen.getByText(/Seleccionar una foto/i)).toBeInTheDocument();
+
+  // Check for the design upload options
+  expect(screen.getByText(/Subir desde archivo/i)).toBeInTheDocument();
+  expect(screen.getByPlaceholderText(/O pega una URL/i)).toBeInTheDocument();
 
   // Check for the size slider
   expect(screen.getByRole('slider')).toBeInTheDocument();
+});
+
+test('should render the AI Inspiration section correctly', () => {
+  render(<App />);
+
+  // Check for the main heading of the AI section
+  expect(screen.getByRole('heading', { name: /Inspiración con IA/i })).toBeInTheDocument();
+
+  // Check for the input field and button
+  expect(screen.getByLabelText(/Describe tu idea de tatuaje/i)).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /Obtener Idea/i })).toBeInTheDocument();
 });
