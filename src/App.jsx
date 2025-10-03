@@ -40,7 +40,7 @@ const App = () => {
       
       setShowWhatsappButton(window.scrollY > 300);
       
-      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'];
+      const sections = ['inicio', 'estilos', 'sobre-nosotros', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -269,7 +269,7 @@ const App = () => {
               </div>
               
               <nav className="hidden lg:flex items-center space-x-1">
-                {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'].map((section) => (
+                {['inicio', 'estilos', 'sobre-nosotros', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'].map((section) => (
                   <motion.button
                     key={section}
                     onClick={() => scrollToSection(section)}
@@ -281,7 +281,7 @@ const App = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                    {section === 'sobre-nosotros' ? 'Sobre Nosotros' : section.charAt(0).toUpperCase() + section.slice(1)}
                   </motion.button>
                 ))}
               </nav>
@@ -308,7 +308,7 @@ const App = () => {
             {isMenuOpen && (
               <div className="lg:hidden bg-background/95 backdrop-blur-md border-t border-card-bg/50">
                 <div className="px-4 py-4 space-y-2">
-                  {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'].map((section) => (
+                  {['inicio', 'estilos', 'sobre-nosotros', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'].map((section) => (
                     <button
                       key={section}
                       onClick={() => scrollToSection(section)}
@@ -318,7 +318,7 @@ const App = () => {
                           : 'text-text-secondary hover:text-text-primary'
                       }`}
                     >
-                      {section.charAt(0).toUpperCase() + section.slice(1)}
+                      {section === 'sobre-nosotros' ? 'Sobre Nosotros' : section.charAt(0).toUpperCase() + section.slice(1)}
                     </button>
                   ))}
                   <a
@@ -432,9 +432,66 @@ const App = () => {
           </div>
         </motion.section>
 
+        <motion.section
+          id="sobre-nosotros"
+          className="py-20 md:py-28 bg-card-bg"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div className="text-center mb-12" variants={itemVariants}>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary font-poppins">Sobre Nosotros</h2>
+              <p className="text-lg md:text-xl text-text-secondary mt-4">
+                Tatuajes: Donde la Historia se Encuentra con tu Estilo
+              </p>
+            </motion.div>
+
+            <motion.div className="space-y-8 text-text-secondary" variants={containerVariants}>
+              <motion.p variants={itemVariants}>
+                El tatuaje no es solo arte en la piel: es una tradición milenaria que ha viajado desde los rituales sagrados de Polinesia, los símbolos curativos de Ötzi (¡hace más de 5.000 años!) y los diseños espirituales del Japón antiguo, hasta convertirse en una de las formas más personales de expresión en el mundo actual.
+              </motion.p>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">Raíces que inspiran</h3>
+                <ul className="list-disc list-inside ml-4 space-y-2">
+                  <li>En culturas como la maorí, el tatuaje contaba tu historia, tu linaje y tu lugar en el mundo.</li>
+                  <li>En el antiguo Egipto, protegía a las mujeres durante el embarazo.</li>
+                  <li>En Japón, los <em>irezumi</em> narraban leyendas de valentía y honor.</li>
+                </ul>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">Hoy: tu piel, tu lienzo</h3>
+                <p className="mb-2">Hoy, el tatuaje fusiona esas raíces con innovación, tecnología y estilo. Ya sea que busques:</p>
+                <ul className="list-disc list-inside ml-4 space-y-2">
+                  <li>Un diseño <strong>minimalista y moderno</strong></li>
+                  <li>Un <strong>tribal con significado ancestral</strong></li>
+                  <li>Un <strong>realismo hiperdetallado</strong></li>
+                  <li>O un <strong>toque japonés, geométrico o acuarela</strong></li>
+                </ul>
+                <p className="mt-2">…lo hacemos con respeto, técnica y pasión.</p>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">Seguridad + Estética = Confianza</h3>
+                <p>Trabajamos con equipos esterilizados, tintas de calidad y protocolos de higiene.</p>
+              </motion.div>
+
+              <hr className="border-card-bg/50" />
+
+              <motion.div variants={itemVariants} className="text-center">
+                <h4 className="text-xl font-bold text-text-primary">¿Listo para dejar tu marca?</h4>
+                <p className="mt-2">Agenda una consulta gratuita y crea un tatuaje que no solo se vea bien… sino que signifique algo.</p>
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.section>
+
         <motion.section 
           id="cejas" 
-          className="py-20 md:py-28 bg-card-bg"
+          className="py-20 md:py-28 bg-background"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -449,7 +506,7 @@ const App = () => {
               {eyebrowStyles.map((style) => (
                 <motion.div 
                   key={style.id} 
-                  className="bg-background rounded-2xl overflow-hidden border border-background/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="bg-card-bg rounded-2xl overflow-hidden border border-card-bg/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
@@ -468,7 +525,7 @@ const App = () => {
 
         <motion.section 
           id="testimonios" 
-          className="py-20 md:py-28 bg-background"
+          className="py-20 md:py-28 bg-card-bg"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -480,7 +537,7 @@ const App = () => {
             </motion.div>
             <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={containerVariants}>
               {testimonials.map((testimonial) => (
-                <motion.div key={testimonial.id} className="bg-card-bg rounded-2xl p-6 border border-card-bg/50" variants={itemVariants}>
+                <motion.div key={testimonial.id} className="bg-background rounded-2xl p-6 border border-background/50" variants={itemVariants}>
                   <div className="flex mb-2">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <svg key={i} className="w-5 h-5 text-primary-accent" fill="currentColor" viewBox="0 0 20 20">
@@ -498,7 +555,7 @@ const App = () => {
 
         <motion.section 
           id="artistas" 
-          className="py-20 md:py-28 bg-card-bg"
+          className="py-20 md:py-28 bg-background"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -508,7 +565,7 @@ const App = () => {
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Artista Principal</h2>
             </div>
-            <div className="bg-background rounded-3xl overflow-hidden border border-background/50 shadow-2xl">
+            <div className="bg-card-bg rounded-3xl overflow-hidden border border-card-bg/50 shadow-2xl">
               <div className="h-96 overflow-hidden">
                 <img src={artist.image} alt={artist.name} className="w-full h-full object-cover" loading="lazy" decoding="async" />
               </div>
@@ -527,7 +584,7 @@ const App = () => {
 
         <motion.section 
           id="galeria" 
-          className="py-20 md:py-28 bg-background"
+          className="py-20 md:py-28 bg-card-bg"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -542,7 +599,7 @@ const App = () => {
               {galleryImages.map((img, i) => (
                 <motion.div 
                   key={i} 
-                  className="aspect-square bg-card-bg rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center"
+                  className="aspect-square bg-background rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center"
                   onClick={() => handleImageClick(img.src)}
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
@@ -557,7 +614,7 @@ const App = () => {
 
         <motion.section
           id="simulador"
-          className="py-20 md:py-28 bg-card-bg"
+          className="py-20 md:py-28 bg-background"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -576,7 +633,7 @@ const App = () => {
               <div className="lg:col-span-1 space-y-8">
                 <div>
                   <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">1. Sube tu Foto</h3>
-                  <div className="bg-background rounded-2xl p-6 border border-background/50">
+                  <div className="bg-card-bg rounded-2xl p-6 border border-card-bg/50">
                     <label htmlFor="simulator-upload" className="cursor-pointer block text-center border-2 border-dashed border-primary-accent/50 rounded-xl py-10 px-4 hover:bg-primary-accent/10 transition-all">
                       <svg className="w-12 h-12 mx-auto text-primary-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
                       <span className="mt-2 block text-sm font-semibold text-primary-accent">
@@ -588,7 +645,7 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">2. Elige un Diseño</h3>
-                  <div className="bg-background rounded-2xl p-6 border border-background/50 space-y-4">
+                  <div className="bg-card-bg rounded-2xl p-6 border border-card-bg/50 space-y-4">
                     <p className="text-sm text-text-secondary text-center">Elige uno de nuestros diseños...</p>
                     <div className="grid grid-cols-3 gap-2 max-h-48 overflow-y-auto">
                       {galleryImages.map((img, i) => (
@@ -614,7 +671,7 @@ const App = () => {
                         value={designUrl}
                         onChange={(e) => setDesignUrl(e.target.value)}
                         placeholder="O pega una URL"
-                        className="w-full px-3 py-2 bg-card-bg/50 border border-card-bg/50 rounded-lg focus:ring-1 focus:ring-primary-accent text-sm"
+                        className="w-full px-3 py-2 bg-background/50 border border-background/50 rounded-lg focus:ring-1 focus:ring-primary-accent text-sm"
                       />
                       <button onClick={() => setDesignImage(designUrl)} className="p-2 bg-primary-accent rounded-lg text-background hover:bg-opacity-80" aria-label="Cargar diseño desde URL">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
@@ -624,7 +681,7 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">3. Ajusta el Tamaño</h3>
-                   <div className="bg-background rounded-2xl p-6 border border-background/50">
+                   <div className="bg-card-bg rounded-2xl p-6 border border-card-bg/50">
                     <input
                       type="range"
                       min="20"
@@ -638,10 +695,10 @@ const App = () => {
               </div>
 
               {/* Columna del Simulador */}
-              <div className="lg:col-span-2 bg-background rounded-2xl p-4 border border-background/50 min-h-[400px] lg:min-h-[600px] flex items-center justify-center">
+              <div className="lg:col-span-2 bg-card-bg rounded-2xl p-4 border border-card-bg/50 min-h-[400px] lg:min-h-[600px] flex items-center justify-center">
                 <div ref={constraintsRef} className="relative w-full h-full overflow-hidden">
                   {simulatorImage ? (
-                    <img src={simulatorImage} alt="Parte del cuerpo para simular tatuaje" className="w-full h-full object-contain pointer-events-none" />
+                    <img src={simulatorImage} alt="Parte del cuerpo para simular tatuaje" className="w-full h-full object-contain" />
                   ) : (
                      <div className="flex flex-col items-center justify-center h-full text-text-secondary">
                         <svg className="w-24 h-24 text-primary-accent/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6l.293-.293a1 1 0 011.414 0L18 10M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
@@ -650,8 +707,8 @@ const App = () => {
                   )}
                   {simulatorImage && designImage && (
                     <Draggable bounds="parent" nodeRef={draggableRef}>
-                      <div ref={draggableRef} className="absolute top-0 left-0 cursor-move z-20 bg-red-500 text-white p-4" style={{ width: `${tattooSize}px`, height: 'auto' }}>
-                        TEST OVERLAY
+                      <div ref={draggableRef} className="absolute cursor-move" style={{ width: `${tattooSize}px`, height: 'auto' }}>
+                        <img src={designImage} alt="Diseño de tatuaje para simular" className="w-full h-full object-contain pointer-events-none" />
                       </div>
                     </Draggable>
                   )}
@@ -663,7 +720,7 @@ const App = () => {
 
         <motion.section
           id="inspiracion-ia"
-          className="py-20 md:py-28 bg-background"
+          className="py-20 md:py-28 bg-card-bg"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -674,7 +731,7 @@ const App = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Inspiración con IA</h2>
               <p className="text-lg md:text-xl text-text-secondary">¿Sin ideas? Describe lo que te gustaría y deja que nuestra IA te dé una sugerencia creativa.</p>
             </div>
-            <div className="bg-card-bg rounded-3xl p-8 md:p-12 border border-card-bg/50">
+            <div className="bg-background rounded-3xl p-8 md:p-12 border border-background/50">
               <form onSubmit={handleAiSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="ai-prompt" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Describe tu idea de tatuaje</label>
@@ -684,7 +741,7 @@ const App = () => {
                     name="ai-prompt"
                     value={aiPrompt}
                     onChange={(e) => setAiPrompt(e.target.value)}
-                    className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary"
+                    className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary"
                     placeholder="Ej: Un lobo aullando a la luna en estilo blackwork"
                   />
                 </div>
@@ -705,7 +762,7 @@ const App = () => {
 
         <motion.section
           id="cuidados"
-          className="py-20 md:py-28 bg-card-bg"
+          className="py-20 md:py-28 bg-background"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -857,7 +914,7 @@ const App = () => {
 
         <motion.section 
           id="contacto" 
-          className="py-20 md:py-28 bg-background"
+          className="py-20 md:py-28 bg-card-bg"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -868,7 +925,7 @@ const App = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Contacto</h2>
               <p className="text-lg md:text-xl text-text-secondary">¿Listo para comenzar tu próximo tatuaje? Envíame un mensaje.</p>
             </div>
-            <div className="bg-card-bg rounded-3xl p-8 md:p-12 border border-card-bg/50">
+            <div className="bg-background rounded-3xl p-8 md:p-12 border border-background/50">
               {state.succeeded ? (
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-primary-accent mb-4">¡Gracias por tu mensaje!</h3>
@@ -879,17 +936,17 @@ const App = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Nombre completo</label>
-                      <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="Tu nombre" />
+                      <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="Tu nombre" />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Correo electrónico</label>
-                      <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="tu@email.com" />
+                      <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary" placeholder="tu@email.com" />
                       <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm mt-1" />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Mensaje</label>
-                    <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary resize-none" placeholder="Cuéntame sobre tu idea de tatuaje..."></textarea>
+                    <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary resize-none" placeholder="Cuéntame sobre tu idea de tatuaje..."></textarea>
                     <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-sm mt-1" />
                   </div>
                   <div className="text-center">
