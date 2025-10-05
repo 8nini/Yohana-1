@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, fireEvent } from '@testing-library/react';
 import App from './App';
 import { expect, test } from 'vitest';
 
@@ -62,4 +62,33 @@ test('should render the AI Inspiration section correctly', () => {
   // Check for the input field and button
   expect(screen.getByLabelText(/Describe tu idea de tatuaje/i)).toBeInTheDocument();
   expect(screen.getByRole('button', { name: /Obtener Idea/i })).toBeInTheDocument();
+});
+
+test('should not update the design image with an invalid URL', async () => {
+  render(<App />);
+
+  // 1. Simulate uploading the simulator image
+  const simulatorUploadInput = screen.getByLabelText(/Seleccionar una foto/i);
+  const fakeFile = new File(['dummy'], 'test.png', { type: 'image/png' });
+  fireEvent.change(simulatorUploadInput, { target: { files: [fakeFile] } });
+
+  // Wait for the image to be processed and rendered
+  const simulatorImage = await screen.findByAltText(/Parte del cuerpo para simular tatuaje/i);
+  expect(simulatorImage).toBeInTheDocument();
+
+  // 2. Get the URL input and the load button for the design
+  const urlInput = screen.getByPlaceholderText(/O pega una URL/i);
+  const loadButton = screen.getByRole('button', { name: /Cargar diseño desde URL/i });
+
+  // 3. Simulate user input with an invalid URL
+  fireEvent.change(urlInput, { target: { value: 'https://not-a-valid-image-url.com' } });
+
+  // 4. Click the load button
+  fireEvent.click(loadButton);
+
+  // 5. Check that the design image is not rendered
+  // With the bug, the component will try to render an <img /> with the invalid src,
+  // so `queryByAltText` will find it, and the test will fail.
+  const designImage = screen.queryByAltText(/Diseño de tatuaje para simular/i);
+  expect(designImage).not.toBeInTheDocument();
 });

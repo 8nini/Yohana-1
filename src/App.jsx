@@ -1,7 +1,18 @@
+// Trivial change to trigger Vercel deployment
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useForm, ValidationError } from '@formspree/react';
 import Draggable from 'react-draggable';
+import {
+  CheckBadgeIcon,
+  ExclamationTriangleIcon,
+  SwatchIcon,
+  LightBulbIcon,
+  MagnifyingGlassIcon,
+  ExclamationCircleIcon,
+  ClockIcon,
+  SunIcon,
+} from '@heroicons/react/24/outline';
 
 const App = () => {
   const [state, handleSubmit] = useForm("YOUR_FORM_ID");
@@ -30,7 +41,7 @@ const App = () => {
       
       setShowWhatsappButton(window.scrollY > 300);
       
-      const sections = ['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'contacto'];
+      const sections = ['inicio', 'estilos', 'sobre-nosotros', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -259,7 +270,7 @@ const App = () => {
               </div>
               
               <nav className="hidden lg:flex items-center space-x-1">
-                {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+                {['inicio', 'estilos', 'sobre-nosotros', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'].map((section) => (
                   <motion.button
                     key={section}
                     onClick={() => scrollToSection(section)}
@@ -271,7 +282,7 @@ const App = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                    {section === 'sobre-nosotros' ? 'Sobre Nosotros' : section.charAt(0).toUpperCase() + section.slice(1)}
                   </motion.button>
                 ))}
               </nav>
@@ -298,7 +309,7 @@ const App = () => {
             {isMenuOpen && (
               <div className="lg:hidden bg-background/95 backdrop-blur-md border-t border-card-bg/50">
                 <div className="px-4 py-4 space-y-2">
-                  {['inicio', 'estilos', 'cejas', 'artistas', 'galeria', 'simulador', 'contacto'].map((section) => (
+                  {['inicio', 'estilos', 'sobre-nosotros', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'].map((section) => (
                     <button
                       key={section}
                       onClick={() => scrollToSection(section)}
@@ -308,7 +319,7 @@ const App = () => {
                           : 'text-text-secondary hover:text-text-primary'
                       }`}
                     >
-                      {section.charAt(0).toUpperCase() + section.slice(1)}
+                      {section === 'sobre-nosotros' ? 'Sobre Nosotros' : section.charAt(0).toUpperCase() + section.slice(1)}
                     </button>
                   ))}
                   <a
@@ -422,9 +433,66 @@ const App = () => {
           </div>
         </motion.section>
 
+        <motion.section
+          id="sobre-nosotros"
+          className="py-20 md:py-28 bg-card-bg"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div className="text-center mb-12" variants={itemVariants}>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary font-poppins">Sobre Nosotros</h2>
+              <p className="text-lg md:text-xl text-text-secondary mt-4">
+                Tatuajes: Donde la Historia se Encuentra con tu Estilo
+              </p>
+            </motion.div>
+
+            <motion.div className="space-y-8 text-text-secondary" variants={containerVariants}>
+              <motion.p variants={itemVariants}>
+                El tatuaje no es solo arte en la piel: es una tradición milenaria que ha viajado desde los rituales sagrados de Polinesia, los símbolos curativos de Ötzi (¡hace más de 5.000 años!) y los diseños espirituales del Japón antiguo, hasta convertirse en una de las formas más personales de expresión en el mundo actual.
+              </motion.p>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">Raíces que inspiran</h3>
+                <ul className="list-disc list-inside ml-4 space-y-2">
+                  <li>En culturas como la maorí, el tatuaje contaba tu historia, tu linaje y tu lugar en el mundo.</li>
+                  <li>En el antiguo Egipto, protegía a las mujeres durante el embarazo.</li>
+                  <li>En Japón, los <em>irezumi</em> narraban leyendas de valentía y honor.</li>
+                </ul>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">Hoy: tu piel, tu lienzo</h3>
+                <p className="mb-2">Hoy, el tatuaje fusiona esas raíces con innovación, tecnología y estilo. Ya sea que busques:</p>
+                <ul className="list-disc list-inside ml-4 space-y-2">
+                  <li>Un diseño <strong>minimalista y moderno</strong></li>
+                  <li>Un <strong>tribal con significado ancestral</strong></li>
+                  <li>Un <strong>realismo hiperdetallado</strong></li>
+                  <li>O un <strong>toque japonés, geométrico o acuarela</strong></li>
+                </ul>
+                <p className="mt-2">…lo hacemos con respeto, técnica y pasión.</p>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">Seguridad + Estética = Confianza</h3>
+                <p>Trabajamos con equipos esterilizados, tintas de calidad y protocolos de higiene.</p>
+              </motion.div>
+
+              <hr className="border-card-bg/50" />
+
+              <motion.div variants={itemVariants} className="text-center">
+                <h4 className="text-xl font-bold text-text-primary">¿Listo para dejar tu marca?</h4>
+                <p className="mt-2">Agenda una consulta gratuita y crea un tatuaje que no solo se vea bien… sino que signifique algo.</p>
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.section>
+
         <motion.section 
           id="cejas" 
-          className="py-20 md:py-28 bg-card-bg"
+          className="py-20 md:py-28 bg-background"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -432,14 +500,14 @@ const App = () => {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div className="text-center mb-16" variants={itemVariants}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Descubre tu estilo perfecto</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Warriors Cejas</h2>
               <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">¿Sueñas con cejas siempre impecables? Combinamos arte, técnica y las últimas tendencias para crear cejas que realzan tu mirada.</p>
             </motion.div>
             <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={containerVariants}>
               {eyebrowStyles.map((style) => (
                 <motion.div 
                   key={style.id} 
-                  className="bg-background rounded-2xl overflow-hidden border border-background/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="bg-card-bg rounded-2xl overflow-hidden border border-card-bg/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
@@ -458,7 +526,7 @@ const App = () => {
 
         <motion.section 
           id="testimonios" 
-          className="py-20 md:py-28 bg-background"
+          className="py-20 md:py-28 bg-card-bg"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -470,7 +538,7 @@ const App = () => {
             </motion.div>
             <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={containerVariants}>
               {testimonials.map((testimonial) => (
-                <motion.div key={testimonial.id} className="bg-card-bg rounded-2xl p-6 border border-card-bg/50" variants={itemVariants}>
+                <motion.div key={testimonial.id} className="bg-background rounded-2xl p-6 border border-background/50" variants={itemVariants}>
                   <div className="flex mb-2">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <svg key={i} className="w-5 h-5 text-primary-accent" fill="currentColor" viewBox="0 0 20 20">
@@ -488,7 +556,7 @@ const App = () => {
 
         <motion.section 
           id="artistas" 
-          className="py-20 md:py-28 bg-card-bg"
+          className="py-20 md:py-28 bg-background"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -498,7 +566,7 @@ const App = () => {
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Artista Principal</h2>
             </div>
-            <div className="bg-background rounded-3xl overflow-hidden border border-background/50 shadow-2xl">
+            <div className="bg-card-bg rounded-3xl overflow-hidden border border-card-bg/50 shadow-2xl">
               <div className="h-96 overflow-hidden">
                 <img src={artist.image} alt={artist.name} className="w-full h-full object-cover" loading="lazy" decoding="async" />
               </div>
@@ -517,7 +585,7 @@ const App = () => {
 
         <motion.section 
           id="galeria" 
-          className="py-20 md:py-28 bg-background"
+          className="py-20 md:py-28 bg-card-bg"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -532,7 +600,7 @@ const App = () => {
               {galleryImages.map((img, i) => (
                 <motion.div 
                   key={i} 
-                  className="aspect-square bg-card-bg rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center"
+                  className="aspect-square bg-background rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center"
                   onClick={() => handleImageClick(img.src)}
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
@@ -547,7 +615,7 @@ const App = () => {
 
         <motion.section
           id="simulador"
-          className="py-20 md:py-28 bg-card-bg"
+          className="py-20 md:py-28 bg-background"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -566,7 +634,7 @@ const App = () => {
               <div className="lg:col-span-1 space-y-8">
                 <div>
                   <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">1. Sube tu Foto</h3>
-                  <div className="bg-background rounded-2xl p-6 border border-background/50">
+                  <div className="bg-card-bg rounded-2xl p-6 border border-card-bg/50">
                     <label htmlFor="simulator-upload" className="cursor-pointer block text-center border-2 border-dashed border-primary-accent/50 rounded-xl py-10 px-4 hover:bg-primary-accent/10 transition-all">
                       <svg className="w-12 h-12 mx-auto text-primary-accent/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
                       <span className="mt-2 block text-sm font-semibold text-primary-accent">
@@ -578,7 +646,7 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">2. Elige un Diseño</h3>
-                  <div className="bg-background rounded-2xl p-6 border border-background/50 space-y-4">
+                  <div className="bg-card-bg rounded-2xl p-6 border border-card-bg/50 space-y-4">
                     <p className="text-sm text-text-secondary text-center">Elige uno de nuestros diseños...</p>
                     <div className="grid grid-cols-3 gap-2 max-h-48 overflow-y-auto">
                       {galleryImages.map((img, i) => (
@@ -604,9 +672,22 @@ const App = () => {
                         value={designUrl}
                         onChange={(e) => setDesignUrl(e.target.value)}
                         placeholder="O pega una URL"
-                        className="w-full px-3 py-2 bg-card-bg/50 border border-card-bg/50 rounded-lg focus:ring-1 focus:ring-primary-accent text-sm"
+                        className="w-full px-3 py-2 bg-background/50 border border-background/50 rounded-lg focus:ring-1 focus:ring-primary-accent text-sm"
                       />
-                      <button onClick={() => setDesignImage(designUrl)} className="p-2 bg-primary-accent rounded-lg text-background hover:bg-opacity-80" aria-label="Cargar diseño desde URL">
+                      <button
+                        onClick={() => {
+                          const isValidImageUrl = (url) => {
+                            return /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
+                          };
+                          if (isValidImageUrl(designUrl)) {
+                            setDesignImage(designUrl);
+                          } else {
+                            alert('URL inválida. Por favor, introduce una URL de una imagen válida (jpg, jpeg, png, gif, webp).');
+                          }
+                        }}
+                        className="p-2 bg-primary-accent rounded-lg text-background hover:bg-opacity-80"
+                        aria-label="Cargar diseño desde URL"
+                      >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                       </button>
                     </div>
@@ -614,7 +695,7 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-text-primary mb-4 font-poppins">3. Ajusta el Tamaño</h3>
-                   <div className="bg-background rounded-2xl p-6 border border-background/50">
+                   <div className="bg-card-bg rounded-2xl p-6 border border-card-bg/50">
                     <input
                       type="range"
                       min="20"
@@ -628,7 +709,7 @@ const App = () => {
               </div>
 
               {/* Columna del Simulador */}
-              <div className="lg:col-span-2 bg-background rounded-2xl p-4 border border-background/50 min-h-[400px] lg:min-h-[600px] flex items-center justify-center">
+              <div className="lg:col-span-2 bg-card-bg rounded-2xl p-4 border border-card-bg/50 min-h-[400px] lg:min-h-[600px] flex items-center justify-center">
                 <div ref={constraintsRef} className="relative w-full h-full overflow-hidden">
                   {simulatorImage ? (
                     <img src={simulatorImage} alt="Parte del cuerpo para simular tatuaje" className="w-full h-full object-contain" />
@@ -653,7 +734,7 @@ const App = () => {
 
         <motion.section
           id="inspiracion-ia"
-          className="py-20 md:py-28 bg-background"
+          className="py-20 md:py-28 bg-card-bg"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -664,7 +745,7 @@ const App = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Inspiración con IA</h2>
               <p className="text-lg md:text-xl text-text-secondary">¿Sin ideas? Describe lo que te gustaría y deja que nuestra IA te dé una sugerencia creativa.</p>
             </div>
-            <div className="bg-card-bg rounded-3xl p-8 md:p-12 border border-card-bg/50">
+            <div className="bg-background rounded-3xl p-8 md:p-12 border border-background/50">
               <form onSubmit={handleAiSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="ai-prompt" className="block text-sm font-medium text-text-secondary mb-2 font-poppins">Describe tu idea de tatuaje</label>
@@ -674,7 +755,7 @@ const App = () => {
                     name="ai-prompt"
                     value={aiPrompt}
                     onChange={(e) => setAiPrompt(e.target.value)}
-                    className="w-full px-4 py-3 bg-background border border-background/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary"
+                    className="w-full px-4 py-3 bg-card-bg border border-card-bg/50 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-transparent text-text-primary placeholder-text-secondary"
                     placeholder="Ej: Un lobo aullando a la luna en estilo blackwork"
                   />
                 </div>
@@ -690,6 +771,158 @@ const App = () => {
                 </div>
               )}
             </div>
+          </div>
+        </motion.section>
+
+        <motion.section
+          id="cuidados"
+          className="py-20 md:py-28 bg-background"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div className="text-center mb-16" variants={itemVariants}>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Warriors Cuidados</h2>
+              <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
+                Cuidados Básicos para tu Primer Tatuaje: Tu guía esencial para una curación segura y un resultado perfecto.
+              </p>
+            </motion.div>
+
+            <motion.div className="space-y-12 text-left" variants={containerVariants}>
+              <motion.div variants={itemVariants}>
+                <h3 className="flex items-center text-2xl font-bold text-primary-accent mb-4 font-poppins">
+                  <CheckBadgeIcon className="h-8 w-8 mr-3" />
+                  Pasos Diarios para los Primeros 2-4 Semanas
+                </h3>
+                <div className="space-y-4 text-text-secondary pl-11">
+                  <div>
+                    <h4 className="font-semibold text-lg text-text-primary">1. Limpieza suave (2 veces al día)</h4>
+                    <ul className="list-disc list-inside ml-4">
+                      <li>Lávate las manos antes de tocar tu tatuaje.</li>
+                      <li>Usa agua tibia y un jabón antibacteriano suave, sin fragancia (ej. Dove Sensitive, Dr. Bronner’s).</li>
+                      <li>Lava con las yemas de los dedos, sin frotar.</li>
+                      <li>Enjuaga bien y seca con toques suaves usando una toalla limpia o papel absorbente.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg text-text-primary">2. Hidratación ligera</h4>
+                    <ul className="list-disc list-inside ml-4">
+                      <li>Aplica una capa fina de crema o pomada para tatuajes (ej. Bepanthen, Aquaphor, o lociones sin perfume).</li>
+                      <li>No uses vaselina ni productos grasos en exceso: pueden atrapar bacterias y bloquear la curación.</li>
+                      <li>Hidrata 2–3 veces al día, solo cuando la piel esté seca.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg text-text-primary">3. Deja que respire</h4>
+                    <ul className="list-disc list-inside ml-4">
+                      <li>Evita cubrir el tatuaje después de las primeras horas (a menos que tu artista indique lo contrario).</li>
+                      <li>Usa ropa holgada y de algodón para reducir la fricción.</li>
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="flex items-center text-2xl font-bold text-primary-accent mb-4 font-poppins">
+                  <ExclamationTriangleIcon className="h-8 w-8 mr-3" />
+                  Qué Evitar ABSOLUTAMENTE
+                </h3>
+                <ul className="list-disc list-inside ml-11 space-y-2 text-text-secondary">
+                  <li>No te rasques ni arranques las costras, aunque pique. ¡Puedes perder tinta o dejar cicatrices!</li>
+                  <li>No expongas tu tatuaje al sol directo ni uses bronceadores (ni camas solares).</li>
+                  <li>No nades en piscinas, mar, jacuzzis o saunas durante al menos 4 semanas.</li>
+                  <li>No hagas ejercicio intenso que cause sudoración excesiva en los primeros 5–7 días.</li>
+                </ul>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="flex items-center text-2xl font-bold text-primary-accent mb-4 font-poppins">
+                  <SwatchIcon className="h-8 w-8 mr-3" />
+                   Recomendaciones por Tipo de Piel
+                </h3>
+                <div className="overflow-x-auto pl-11">
+                  <table className="w-full text-left bg-background rounded-lg">
+                    <thead>
+                      <tr>
+                        <th className="p-4 font-semibold text-text-primary">Tipo de piel</th>
+                        <th className="p-4 font-semibold text-text-primary">Consejo clave</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-t border-card-bg/50">
+                        <td className="p-4 text-text-secondary">Grasa</td>
+                        <td className="p-4 text-text-secondary">Usa humectantes no comedogénicos (que no obstruyan poros).</td>
+                      </tr>
+                      <tr className="border-t border-card-bg/50">
+                        <td className="p-4 text-text-secondary">Seca</td>
+                        <td className="p-4 text-text-secondary">Hidrata más frecuentemente con cremas nutritivas (con aloe, manteca de karité o pantenol).</td>
+                      </tr>
+                      <tr className="border-t border-card-bg/50">
+                        <td className="p-4 text-text-secondary">Sensible</td>
+                        <td className="p-4 text-text-secondary">Elige productos sin fragancia, alcohol ni colorantes. Haz una prueba en otra zona antes de usar.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="flex items-center text-sm text-text-secondary mt-2 italic pl-11">
+                  <LightBulbIcon className="h-4 w-4 mr-2" />
+                  Todos los tipos de piel deben evitar el sol y mantener una higiene impecable.
+                </p>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="flex items-center text-2xl font-bold text-primary-accent mb-4 font-poppins">
+                  <MagnifyingGlassIcon className="h-8 w-8 mr-3" />
+                   Señales de Alarma: ¿Cuándo ir al médico?
+                </h3>
+                <p className="mb-4 text-text-secondary pl-11">Consulta a un dermatólogo de inmediato si notas:</p>
+                <ul className="list-disc list-inside ml-11 space-y-2 text-text-secondary">
+                  <li>Enrojecimiento que se expande o empeora después del día 3.</li>
+                  <li>Hinchazón, calor intenso o dolor creciente.</li>
+                  <li>Pus amarillo/verde con mal olor.</li>
+                  <li>Fiebre, escalofríos o ganglios inflamados.</li>
+                  <li>Picazón extrema con ampollas o erupciones (puede ser alergia a la tinta).</li>
+                </ul>
+                <p className="mt-4 font-semibold text-red-500 flex items-center pl-11">
+                  <ExclamationCircleIcon className="h-5 w-5 mr-2" />
+                  No esperes: una infección no tratada puede dañar tu piel y tu tatuaje.
+                </p>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="flex items-center text-2xl font-bold text-primary-accent mb-4 font-poppins">
+                  <ClockIcon className="h-8 w-8 mr-3" />
+                  ¿Cuánto tarda en sanar?
+                </h3>
+                <ul className="list-disc list-inside ml-11 space-y-2 text-text-secondary">
+                  <li><strong>Superficialmente:</strong> 2–4 semanas (costras caen, picazón disminuye).</li>
+                  <li><strong>Completamente:</strong> hasta 6 meses (la tinta se fija en las capas profundas de la piel).</li>
+                </ul>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <h3 className="flex items-center text-2xl font-bold text-primary-accent mb-4 font-poppins">
+                  <SunIcon className="h-8 w-8 mr-3" />
+                  Cuidado a Largo Plazo
+                </h3>
+                <p className="mb-2 text-text-secondary pl-11">Una vez sano:</p>
+                <ul className="list-disc list-inside ml-11 space-y-2 text-text-secondary">
+                  <li>Siempre usa protector solar (FPS 30+) cuando tu tatuaje esté expuesto al sol.</li>
+                  <li>Hidrata tu piel regularmente para mantener los colores vivos.</li>
+                  <li>Evita cambios bruscos de peso que puedan distorsionar el diseño.</li>
+                </ul>
+              </motion.div>
+
+              <motion.blockquote variants={itemVariants} className="text-center p-6 bg-background border-l-4 border-primary-accent rounded-r-lg">
+                <p className="text-lg italic text-text-secondary">"Sigue las indicaciones de tu artista. Cada tatuador tiene un protocolo basado en su experiencia. Si hay dudas, ¡pregunta! Mejor prevenir que lamentar."</p>
+              </motion.blockquote>
+
+              <motion.p variants={itemVariants} className="text-center font-bold text-lg text-primary-accent">
+                Con estos cuidados, tu tatuaje no solo sanará perfecto, sino que lucirá increíble por muchos años. ¡Disfrútalo con responsabilidad! 🖤
+              </motion.p>
+            </motion.div>
           </div>
         </motion.section>
 
