@@ -23,7 +23,6 @@ const App = () => {
   const [selectedBodyPart, setSelectedBodyPart] = useState('brazo');
   const [designImage, setDesignImage] = useState(null);
   const [designUrl, setDesignUrl] = useState('');
-  const [designUrlError, setDesignUrlError] = useState('');
   const [tattooSize, setTattooSize] = useState(100);
   const constraintsRef = useRef(null);
   const draggableRef = useRef(null);
@@ -673,12 +672,7 @@ const App = () => {
                       <input
                         type="text"
                         value={designUrl}
-                        onChange={(e) => {
-                          setDesignUrl(e.target.value);
-                          if (designUrlError) {
-                            setDesignUrlError('');
-                          }
-                        }}
+                        onChange={(e) => setDesignUrl(e.target.value)}
                         placeholder="O pega una URL"
                         className="w-full px-3 py-2 bg-background/50 border border-background/50 rounded-lg focus:ring-1 focus:ring-primary-accent text-sm"
                       />
@@ -689,9 +683,8 @@ const App = () => {
                           };
                           if (isValidImageUrl(designUrl)) {
                             setDesignImage(designUrl);
-                            setDesignUrlError('');
                           } else {
-                            setDesignUrlError('URL inválida. Por favor, introduce una URL de una imagen válida (jpg, jpeg, png, gif, webp).');
+                            alert('URL inválida. Por favor, introduce una URL de una imagen válida (jpg, jpeg, png, gif, webp).');
                           }
                         }}
                         className="p-2 bg-primary-accent rounded-lg text-background hover:bg-opacity-80"
@@ -700,7 +693,6 @@ const App = () => {
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                       </button>
                     </div>
-                    {designUrlError && <p className="text-red-500 text-sm mt-2">{designUrlError}</p>}
                   </div>
                 </div>
                 <div>

@@ -94,20 +94,3 @@ test('should not update the design image with an invalid URL', async () => {
   const designImage = screen.queryByAltText(/Diseño de tatuaje para simular/i);
   expect(designImage).not.toBeInTheDocument();
 });
-
-test('should display an error message for an invalid image URL', async () => {
-  render(<App />);
-
-  const urlInput = screen.getByPlaceholderText(/O pega una URL/i);
-  const loadButton = screen.getByRole('button', { name: /Cargar diseño desde URL/i });
-
-  // Simulate user input with an invalid URL
-  fireEvent.change(urlInput, { target: { value: 'not-a-valid-url' } });
-
-  // Click the load button
-  fireEvent.click(loadButton);
-
-  // Check that an error message is displayed. This will fail before the fix.
-  const errorMessage = await screen.findByText(/URL inválida/i);
-  expect(errorMessage).toBeInTheDocument();
-});
