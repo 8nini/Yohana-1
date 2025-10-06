@@ -677,12 +677,12 @@ const App = () => {
                       <button
                         onClick={() => {
                           const isValidImageUrl = (url) => {
-                            return /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
+                            return url.startsWith('http://') || url.startsWith('https');
                           };
                           if (isValidImageUrl(designUrl)) {
                             setDesignImage(designUrl);
                           } else {
-                            alert('URL inválida. Por favor, introduce una URL de una imagen válida (jpg, jpeg, png, gif, webp).');
+                            alert('URL inválida. Por favor, introduce una URL de una imagen válida que empiece con http:// o https://.');
                           }
                         }}
                         className="p-2 bg-primary-accent rounded-lg text-background hover:bg-opacity-80"
