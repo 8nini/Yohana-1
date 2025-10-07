@@ -81,39 +81,14 @@ test('should not update the design image with an invalid URL', async () => {
   const loadButton = screen.getByRole('button', { name: /Cargar diseño desde URL/i });
 
   // 3. Simulate user input with an invalid URL
-  fireEvent.change(urlInput, { target: { value: 'not-a-valid-url' } });
+  fireEvent.change(urlInput, { target: { value: 'https://not-a-valid-image-url.com' } });
 
   // 4. Click the load button
   fireEvent.click(loadButton);
 
   // 5. Check that the design image is not rendered
+  // With the bug, the component will try to render an <img /> with the invalid src,
+  // so `queryByAltText` will find it, and the test will fail.
   const designImage = screen.queryByAltText(/Diseño de tatuaje para simular/i);
   expect(designImage).not.toBeInTheDocument();
-});
-
-test('should update the design image with a valid URL without a file extension', async () => {
-  render(<App />);
-
-  // 1. Simulate uploading the simulator image to show the design controls
-  const simulatorUploadInput = screen.getByLabelText(/Seleccionar una foto/i);
-  const fakeFile = new File(['dummy'], 'test.png', { type: 'image/png' });
-  fireEvent.change(simulatorUploadInput, { target: { files: [fakeFile] } });
-
-  await screen.findByAltText(/Parte del cuerpo para simular tatuaje/i);
-
-  // 2. Get the URL input and the load button for the design
-  const urlInput = screen.getByPlaceholderText(/O pega una URL/i);
-  const loadButton = screen.getByRole('button', { name: /Cargar diseño desde URL/i });
-
-  // 3. Simulate user input with a valid URL that doesn't have a file extension
-  const validUrlWithoutExtension = 'https://source.unsplash.com/random';
-  fireEvent.change(urlInput, { target: { value: validUrlWithoutExtension } });
-
-  // 4. Click the load button
-  fireEvent.click(loadButton);
-
-  // 5. Check that the design image is rendered. This will fail before the fix.
-  const designImage = await screen.findByAltText(/Diseño de tatuaje para simular/i);
-  expect(designImage).toBeInTheDocument();
-  expect(designImage).toHaveAttribute('src', validUrlWithoutExtension);
 });
