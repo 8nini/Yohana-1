@@ -92,3 +92,32 @@ test('should not update the design image with an invalid URL', async () => {
   const designImage = screen.queryByAltText(/Diseño de tatuaje para simular/i);
   expect(designImage).not.toBeInTheDocument();
 });
+
+test('should remove the design image if the URL is broken', async () => {
+  render(<App />);
+
+  // 1. Simulate uploading the simulator image to show the design area
+  const simulatorUploadInput = screen.getByLabelText(/Seleccionar una foto/i);
+  const fakeFile = new File(['dummy'], 'test.png', { type: 'image/png' });
+  fireEvent.change(simulatorUploadInput, { target: { files: [fakeFile] } });
+  await screen.findByAltText(/Parte del cuerpo para simular tatuaje/i);
+
+  // 2. Get the URL input and load button
+  const urlInput = screen.getByPlaceholderText(/O pega una URL/i);
+  const loadButton = screen.getByRole('button', { name: /Cargar diseño desde URL/i });
+
+  // 3. Input a valid-looking but broken image URL
+  fireEvent.change(urlInput, { target: { value: 'http://localhost/broken.jpg' } });
+  fireEvent.click(loadButton);
+
+  // 4. The broken image will be in the DOM initially
+  const designImage = screen.getByAltText(/Diseño de tatuaje para simular/i);
+  expect(designImage).toBeInTheDocument();
+
+  // 5. Simulate the image failing to load by firing the onError event
+  fireEvent.error(designImage);
+
+  // 6. Assert that the broken image is removed from the DOM.
+  // This assertion will fail before the fix.
+  expect(screen.queryByAltText(/Diseño de tatuaje para simular/i)).not.toBeInTheDocument();
+});
