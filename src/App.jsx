@@ -420,8 +420,8 @@ const App = () => {
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="h-48 bg-gray-900 flex items-center justify-center">
-                     <img src={style.image} alt={style.name} className="max-h-full max-w-full object-contain transition-transform duration-700 hover:scale-110" loading="lazy" decoding="async" />
+                  <div className="h-48">
+                     <img src={style.image} alt={style.name} className="w-full h-full object-contain transition-transform duration-700 hover:scale-110" loading="lazy" decoding="async" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-3 font-poppins">{style.name}</h3>
@@ -511,8 +511,8 @@ const App = () => {
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="h-48 bg-gray-900 flex items-center justify-center">
-                     <img src={style.image} alt={style.name} className="max-h-full max-w-full object-contain transition-transform duration-700 hover:scale-110" loading="lazy" decoding="async" />
+                  <div className="h-48">
+                     <img src={style.image} alt={style.name} className="w-full h-full object-contain transition-transform duration-700 hover:scale-110" loading="lazy" decoding="async" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-3 font-poppins">{style.name}</h3>
@@ -568,7 +568,7 @@ const App = () => {
             </div>
             <div className="bg-card-bg rounded-3xl overflow-hidden border border-card-bg/50 shadow-2xl">
               <div className="h-96 overflow-hidden">
-                <img src={artist.image} alt={artist.name} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                <img src={artist.image} alt={artist.name} className="w-full h-full object-cover object-top" loading="lazy" decoding="async" />
               </div>
               <div className="p-8 md:p-12">
                 <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-3 font-poppins">{artist.name}</h3>
@@ -600,13 +600,13 @@ const App = () => {
               {galleryImages.map((img, i) => (
                 <motion.div 
                   key={i} 
-                  className="aspect-square bg-background rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center"
+                  className="aspect-square rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
                   onClick={() => handleImageClick(img.src)}
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <img src={img.src} alt={img.alt} className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-110" loading="lazy" decoding="async" />
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-contain transition-transform duration-500 hover:scale-110" loading="lazy" decoding="async" />
                 </motion.div>
               ))}
             </motion.div>
@@ -676,11 +676,13 @@ const App = () => {
                       />
                       <button
                         onClick={() => {
-                          const isValidImageUrl = (url) => url.startsWith('http://') || url.startsWith('https');
+                          const isValidImageUrl = (url) => {
+                            return /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
+                          };
                           if (isValidImageUrl(designUrl)) {
                             setDesignImage(designUrl);
                           } else {
-                            alert('URL inválida. Por favor, introduce una URL de una imagen válida que empiece con http:// o https://.');
+                            alert('URL inválida. Por favor, introduce una URL de una imagen válida (jpg, jpeg, png, gif, webp).');
                           }
                         }}
                         className="p-2 bg-primary-accent rounded-lg text-background hover:bg-opacity-80"
