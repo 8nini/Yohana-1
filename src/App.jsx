@@ -97,6 +97,11 @@ const App = () => {
     setDesignImage(imageSrc);
   };
 
+  const handleDesignImageError = () => {
+    setDesignImage(null);
+    alert('La imagen no se pudo cargar. Por favor, verifica la URL e inténtalo de nuevo.');
+  };
+
   const handleAiSubmit = (e) => {
     e.preventDefault();
     if (!aiPrompt) return;
@@ -722,7 +727,12 @@ const App = () => {
                   {simulatorImage && designImage && (
                     <Draggable bounds="parent" nodeRef={draggableRef}>
                       <div ref={draggableRef} className="absolute cursor-move" style={{ width: `${tattooSize}px`, height: 'auto' }}>
-                        <img src={designImage} alt="Diseño de tatuaje para simular" className="w-full h-full object-contain pointer-events-none" />
+                        <img
+                          src={designImage}
+                          alt="Diseño de tatuaje para simular"
+                          className="w-full h-full object-contain pointer-events-none"
+                          onError={handleDesignImageError}
+                        />
                       </div>
                     </Draggable>
                   )}
