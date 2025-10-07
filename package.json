@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "test": "vitest --config ./vitest.config.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",

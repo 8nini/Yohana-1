@@ -19,10 +19,10 @@ test('should render gallery images with correct src and alt attributes', () => {
   expect(galleryImages).toHaveLength(4);
 
   const expectedImages = [
-    { src: "/images/galeria-1.webp", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
-    { src: "/images/galeria-2.webp", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
-    { src: "/images/galeria-3.webp", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
-    { src: "/images/galeria-4.webp", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
+    { src: "/images/galeria-1.jpg", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
+    { src: "/images/galeria-2.jpg", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
+    { src: "/images/galeria-3.jpg", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
+    { src: "/images/galeria-4.jpg", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
   ];
 
   galleryImages.forEach((img, i) => {
@@ -87,8 +87,6 @@ test('should not update the design image with an invalid URL', async () => {
   fireEvent.click(loadButton);
 
   // 5. Check that the design image is not rendered
-  // With the bug, the component will try to render an <img /> with the invalid src,
-  // so `queryByAltText` will find it, and the test will fail.
   const designImage = screen.queryByAltText(/Diseño de tatuaje para simular/i);
   expect(designImage).not.toBeInTheDocument();
 });
