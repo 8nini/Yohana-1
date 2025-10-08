@@ -127,25 +127,25 @@ const App = () => {
   };
 
   const tattooStyles = [
-    { id: 1, name: "Blackwork", image: "/images/blackwork.jpg", description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas." },
-    { id: 2, name: "Realismo", image: "/images/realismo.jpg", description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada." },
-    { id: 3, name: "Tradicionales", image: "/images/tradicionales.jpg", description: "Estilo clásico americano con líneas gruesas, colores vibrantes y diseños icónicos que trascienden generaciones." },
-    { id: 4, name: "Geométricos", image: "/images/geometricos.jpg", description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel." },
-    { id: 5, name: "Japonés", image: "/images/japones.jpg", description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales." }
+    { id: 1, name: "Blackwork", image: "/images/blackwork.webp", description: "Diseños impactantes utilizando únicamente tinta negra, con contrastes dramáticos y composiciones poderosas." },
+    { id: 2, name: "Realismo", image: "/images/realismo.webp", description: "Tatuajes con detalles hiperrealistas que parecen fotografías en la piel. Cada sombra y textura cuidadosamente recreada." },
+    { id: 3, name: "Tradicionales", image: "/images/tradicionales.webp", description: "Estilo clásico americano con líneas gruesas, colores vibrantes y diseños icónicos que trascienden generaciones." },
+    { id: 4, name: "Geométricos", image: "/images/geometricos.webp", description: "Diseños precisos basados en formas geométricas, patrones simétricos y mandalas que crean armonía visual en la piel." },
+    { id: 5, name: "Japonés", image: "/images/japones.webp", description: "Estilo tradicional japonés con motivos culturales, simbólicos y mitológicos que cuentan historias ancestrales." }
   ];
 
   const eyebrowStyles = [
-    { id: 1, name: "Hair Stroke – Hiperrealismo pelo a pelo", image: "/images/hair-stroke.jpg", description: "Trazos finos y precisos que imitan cada vello con realismo absoluto. Ideal para un look suave, fresco y 100% natural, incluso sin maquillaje." },
-    { id: 2, name: "Messy Brows – Volumen con actitud", image: "/images/messy-brows.jpg", description: "Un estilo moderno, espontáneo y lleno de vida. Cejas con movimiento, textura y volumen que lucen como recién peinadas… ¡sin hacer nada!" },
-    { id: 3, name: "Tupidas y Laminadas – Densidad con brillo", image: "/images/tupidas-laminadas.jpg", description: "Combinamos micropigmentación con tratamiento laminado para crear cejas densas, ordenadas y con un acabado brillante y saludable que dura semanas." },
-    { id: 4, name: "Powder Brows – Sombreado suave y elegante", image: "/images/powder-brows.jpg", description: "Un relleno difuminado que imita el polvo de cejas, con bordes suaves y color uniforme. Perfecto para un look definido, moderno y natural al mismo tiempo." },
-    { id: 5, name: "Estilo Híbrido – Lo mejor de dos mundos", image: "/images/hibrido.jpg", description: "Fusionamos trazos realistas en la parte delantera con sombreado suave en el centro y cola. El equilibrio ideal entre realismo y definición." }
+    { id: 1, name: "Hair Stroke – Hiperrealismo pelo a pelo", image: "/images/hair-stroke.webp", description: "Trazos finos y precisos que imitan cada vello con realismo absoluto. Ideal para un look suave, fresco y 100% natural, incluso sin maquillaje." },
+    { id: 2, name: "Messy Brows – Volumen con actitud", image: "/images/messy-brows.webp", description: "Un estilo moderno, espontáneo y lleno de vida. Cejas con movimiento, textura y volumen que lucen como recién peinadas… ¡sin hacer nada!" },
+    { id: 3, name: "Tupidas y Laminadas – Densidad con brillo", image: "/images/tupidas-laminadas.webp", description: "Combinamos micropigmentación con tratamiento laminado para crear cejas densas, ordenadas y con un acabado brillante y saludable que dura semanas." },
+    { id: 4, name: "Powder Brows – Sombreado suave y elegante", image: "/images/powder-brows.webp", description: "Un relleno difuminado que imita el polvo de cejas, con bordes suaves y color uniforme. Perfecto para un look definido, moderno y natural al mismo tiempo." },
+    { id: 5, name: "Estilo Híbrido – Lo mejor de dos mundos", image: "/images/hibrido.webp", description: "Fusionamos trazos realistas en la parte delantera con sombreado suave en el centro y cola. El equilibrio ideal entre realismo y definición." }
   ];
 
   const artist = {
     name: "Sergio Fernández",
     specialty: "Artista Principal - Blackouts y Blackwork",
-    image: "/images/sergio.jpg",
+    image: "/images/sergio.webp",
     bio: "Tatuador independiente con más de 10 años de experiencia, especializado en Blackouts y Blackwork. Experto en diseños minimalistas y con la capacidad de transformar tus tatuajes viejos en nuevos diseños innovadores. Reconocido por su técnica impecable y atención al detalle.",
     instagram: "@sergiofernandez_tattoo",
     email: "styletattoo86@gmail.com",
@@ -154,10 +154,10 @@ const App = () => {
   };
 
   const galleryImages = [
-    { src: "/images/galeria-1.jpg", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
-    { src: "/images/galeria-2.jpg", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
-    { src: "/images/galeria-3.jpg", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
-    { src: "/images/galeria-4.jpg", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
+    { src: "/images/galeria-1.webp", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
+    { src: "/images/galeria-2.webp", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
+    { src: "/images/galeria-3.webp", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
+    { src: "/images/galeria-4.webp", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
   ];
 
   const testimonials = [
@@ -240,14 +240,14 @@ const App = () => {
       <meta name="googlebot" content="index, follow" />
       <meta property="og:title" content="Sergio Fernández - Tatuador Profesional en Caracas y Miranda" />
       <meta property="og:description" content="Transforma tus ideas en arte permanente con un especialista en Blackwork y Realismo en Caracas y Miranda." />
-      <meta property="og:image" content="https://yohana-1.vercel.app/images/hero.jpg" />
+      <meta property="og:image" content="https://yohana-1.vercel.app/images/hero.webp" />
       <meta property="og:url" content="https://yohana-1.vercel.app" />
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="es_VE" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Sergio Fernández - Tatuador Profesional en Caracas y Miranda" />
       <meta name="twitter:description" content="Especialista en Blackwork y transformación de tatuajes en Caracas y Miranda, Venezuela." />
-      <meta name="twitter:image" content="https://yohana-1.vercel.app/images/hero.jpg" />
+      <meta name="twitter:image" content="https://yohana-1.vercel.app/images/hero.webp" />
       <link rel="canonical" href="https://yohana-1.vercel.app" />
       <title>Tatuador en Caracas y Miranda - Sergio Tattoo | Blackwork & Cejas</title>
 
@@ -699,7 +699,7 @@ const App = () => {
         <footer className="bg-background py-12 border-t border-card-bg/50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 className="text-2xl md:text-3xl font-bold text-primary-accent font-poppins mb-4">Sergio Tattoo</h3>
-            <p className="text-text-secondary mb-2">Estudio de tatuajes en Caracas y Miranda, Venezuela</p>
+            <p className="text-text-secondary mb-2">Estudio de Tatuajes Móvil en Caracas y Miranda, Venezuela</p>
             <p className="text-text-secondary mb-4">Tel: {artist.phone}</p>
             <div className="mt-6">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center bg-green-600 hover:bg-green-700 px-6 py-2.5 rounded-full font-semibold text-white transition-all duration-300">
