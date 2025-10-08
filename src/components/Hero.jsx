@@ -42,6 +42,14 @@ const Hero = ({ whatsappLink, scrollToSection }) => {
         >
           Transformo tus ideas en arte permanente. Especialista en diseños minimalistas y transformación de tatuajes viejos.
         </motion.p>
+        <motion.p
+          className="text-base sm:text-lg text-text-secondary mb-8 max-w-3xl mx-auto leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+        >
+          Tatuador profesional disponible con estudio móvil en Chacao, Baruta, El Hatillo, Los Teques y toda la Gran Caracas.
+        </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center"
           initial={{ opacity: 0, y: 20 }}
