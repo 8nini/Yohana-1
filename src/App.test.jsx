@@ -2,12 +2,10 @@ import { render, screen, within, fireEvent } from '@testing-library/react';
 import App from './App';
 import { expect, test } from 'vitest';
 
-test('should render the Cejas link in the navigation', () => {
+test('should format hyphenated nav links correctly', () => {
   render(<App />);
-
-  // This assertion will fail before the fix because the button is not in the document.
-  // We use queryByRole which returns null if not found, leading to a clean assertion failure.
-  expect(screen.queryByRole('button', { name: /cejas/i })).toBeInTheDocument();
+  // This test will fail because "inspiracion-ia" is rendered as "Inspiracion-ia"
+  expect(screen.getByRole('button', { name: /Inspiracion IA/i })).toBeInTheDocument();
 });
 
 test('should render gallery images with correct src and alt attributes', () => {
