@@ -13,6 +13,11 @@ import {
   ClockIcon,
   SunIcon,
 } from '@heroicons/react/24/outline';
+import Header from './components/Header';
+import AboutUs from './components/AboutUs';
+import TattooStyles from './components/TattooStyles';
+import EyebrowStyles from './components/EyebrowStyles';
+import Hero from './components/Hero';
 
 const App = () => {
   const [state, handleSubmit] = useForm("YOUR_FORM_ID");
@@ -246,288 +251,22 @@ const App = () => {
       <title>Tatuador en Caracas y Miranda - Sergio Tattoo | Blackwork & Cejas</title>
 
       <div className="min-h-screen bg-background text-text-primary font-inter">
-        <div 
-          className="fixed top-0 left-0 h-1 bg-primary-accent z-50 transition-all duration-100"
-          style={{ width: `${scrollProgress}%` }}
-        ></div>
+        <Header
+          scrollProgress={scrollProgress}
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          activeSection={activeSection}
+          scrollToSection={scrollToSection}
+          whatsappLink={whatsappLink}
+        />
 
-        <motion.header 
-          className="fixed w-full z-50 bg-background/90 backdrop-blur-md border-b border-card-bg/50"
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-20">
-              <div className="flex items-center space-x-3">
-                <motion.div 
-                  className="w-12 h-12 bg-primary-accent rounded-full flex items-center justify-center shadow-lg"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <svg className="w-7 h-7 text-background" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                  </svg>
-                </motion.div>
-                <h1 className="text-2xl font-bold text-primary-accent font-poppins">
-                  Sergio Tattoo
-                </h1>
-              </div>
-              
-              <nav className="hidden lg:flex items-center space-x-1">
-                {['inicio', 'estilos', 'sobre-nosotros', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'].map((section) => (
-                  <motion.button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                      activeSection === section
-                        ? 'bg-primary-accent text-background'
-                        : 'text-text-secondary hover:text-text-primary'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {section === 'sobre-nosotros' ? 'Sobre Nosotros' : section.charAt(0).toUpperCase() + section.slice(1)}
-                  </motion.button>
-                ))}
-              </nav>
+        <Hero whatsappLink={whatsappLink} scrollToSection={scrollToSection} />
 
-              <a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden lg:block bg-primary-accent hover:bg-opacity-80 px-6 py-2.5 rounded-full font-semibold text-sm text-background transition-all duration-300 shadow-lg"
-              >
-                Agenda tu cita
-              </a>
+        <TattooStyles tattooStyles={tattooStyles} />
 
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden p-2 rounded-md text-text-secondary hover:text-text-primary"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-            </div>
+        <AboutUs />
 
-            {isMenuOpen && (
-              <div className="lg:hidden bg-background/95 backdrop-blur-md border-t border-card-bg/50">
-                <div className="px-4 py-4 space-y-2">
-                  {['inicio', 'estilos', 'sobre-nosotros', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'].map((section) => (
-                    <button
-                      key={section}
-                      onClick={() => scrollToSection(section)}
-                      className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                        activeSection === section
-                          ? 'bg-primary-accent text-background'
-                          : 'text-text-secondary hover:text-text-primary'
-                      }`}
-                    >
-                      {section === 'sobre-nosotros' ? 'Sobre Nosotros' : section.charAt(0).toUpperCase() + section.slice(1)}
-                    </button>
-                  ))}
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center bg-primary-accent hover:bg-opacity-80 px-4 py-3 rounded-lg font-semibold text-sm text-background transition-all duration-300 mt-2"
-                  >
-                    Agenda tu cita
-                  </a>
-                </div>
-              </div>
-            )}
-          </div>
-        </motion.header>
-
-        <section id="inicio" className="relative h-screen flex items-center justify-center bg-background">
-          <div className="absolute inset-0 bg-gradient-to-b from-background/20 to-background/80 z-0"></div>
-          <img 
-            src="/images/hero.jpg"
-            alt="Fondo estudio" 
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
-            loading="eager"
-            decoding="async"
-          />
-          <motion.div 
-            className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h1 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-text-primary mb-4 leading-tight font-poppins"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              Sergio Fernández
-            </motion.h1>
-            <motion.p 
-              className="text-lg sm:text-xl md:text-2xl text-primary-accent mb-6 font-medium font-poppins"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              Artista Principal - Blackouts & Blackwork
-            </motion.p>
-            <motion.p 
-              className="text-base sm:text-lg md:text-xl text-text-secondary mb-8 max-w-2xl mx-auto leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-            >
-              Transformo tus ideas en arte permanente. Especialista en diseños minimalistas y transformación de tatuajes viejos.
-            </motion.p>
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-            >
-              <a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary-accent hover:bg-opacity-80 px-8 py-3.5 rounded-full font-bold text-background transition-all duration-300 shadow-xl"
-              >
-                Contactar por WhatsApp
-              </a>
-              <button 
-                onClick={() => scrollToSection('galeria')} 
-                className="border-2 border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-background px-8 py-3.5 rounded-full transition-all duration-300 font-medium"
-              >
-                Ver Galería
-              </button>
-            </motion.div>
-          </motion.div>
-        </section>
-
-        <motion.section 
-          id="estilos" 
-          className="py-20 md:py-28 bg-background"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div className="text-center mb-16" variants={itemVariants}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Estilos de Tatuaje</h2>
-              <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">Especializado en técnicas que marcan tendencia en Caracas y Miranda.</p>
-            </motion.div>
-            <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={containerVariants}>
-              {tattooStyles.map((style) => (
-                <motion.div 
-                  key={style.id} 
-                  className="bg-card-bg rounded-2xl overflow-hidden border border-card-bg/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="h-48">
-                     <img src={style.image} alt={style.name} className="w-full h-full object-contain transition-transform duration-700 hover:scale-110" loading="lazy" decoding="async" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-3 font-poppins">{style.name}</h3>
-                    <p className="text-text-secondary leading-relaxed">{style.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.section>
-
-        <motion.section
-          id="sobre-nosotros"
-          className="py-20 md:py-28 bg-card-bg"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div className="text-center mb-12" variants={itemVariants}>
-              <h2 className="text-4xl md:text-5xl font-bold text-text-primary font-poppins">Sobre Nosotros</h2>
-              <p className="text-lg md:text-xl text-text-secondary mt-4">
-                Tatuajes: Donde la Historia se Encuentra con tu Estilo
-              </p>
-            </motion.div>
-
-            <motion.div className="space-y-8 text-text-secondary" variants={containerVariants}>
-              <motion.p variants={itemVariants}>
-                El tatuaje no es solo arte en la piel: es una tradición milenaria que ha viajado desde los rituales sagrados de Polinesia, los símbolos curativos de Ötzi (¡hace más de 5.000 años!) y los diseños espirituales del Japón antiguo, hasta convertirse en una de las formas más personales de expresión en el mundo actual.
-              </motion.p>
-
-              <motion.div variants={itemVariants}>
-                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">Raíces que inspiran</h3>
-                <ul className="list-disc list-inside ml-4 space-y-2">
-                  <li>En culturas como la maorí, el tatuaje contaba tu historia, tu linaje y tu lugar en el mundo.</li>
-                  <li>En el antiguo Egipto, protegía a las mujeres durante el embarazo.</li>
-                  <li>En Japón, los <em>irezumi</em> narraban leyendas de valentía y honor.</li>
-                </ul>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">Hoy: tu piel, tu lienzo</h3>
-                <p className="mb-2">Hoy, el tatuaje fusiona esas raíces con innovación, tecnología y estilo. Ya sea que busques:</p>
-                <ul className="list-disc list-inside ml-4 space-y-2">
-                  <li>Un diseño <strong>minimalista y moderno</strong></li>
-                  <li>Un <strong>tribal con significado ancestral</strong></li>
-                  <li>Un <strong>realismo hiperdetallado</strong></li>
-                  <li>O un <strong>toque japonés, geométrico o acuarela</strong></li>
-                </ul>
-                <p className="mt-2">…lo hacemos con respeto, técnica y pasión.</p>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <h3 className="text-2xl font-bold text-primary-accent mb-4 font-poppins">Seguridad + Estética = Confianza</h3>
-                <p>Trabajamos con equipos esterilizados, tintas de calidad y protocolos de higiene.</p>
-              </motion.div>
-
-              <hr className="border-card-bg/50" />
-
-              <motion.div variants={itemVariants} className="text-center">
-                <h4 className="text-xl font-bold text-text-primary">¿Listo para dejar tu marca?</h4>
-                <p className="mt-2">Agenda una consulta gratuita y crea un tatuaje que no solo se vea bien… sino que signifique algo.</p>
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.section>
-
-        <motion.section 
-          id="cejas" 
-          className="py-20 md:py-28 bg-background"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div className="text-center mb-16" variants={itemVariants}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary font-poppins">Warriors Cejas</h2>
-              <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">¿Sueñas con cejas siempre impecables? Combinamos arte, técnica y las últimas tendencias para crear cejas que realzan tu mirada.</p>
-            </motion.div>
-            <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={containerVariants}>
-              {eyebrowStyles.map((style) => (
-                <motion.div 
-                  key={style.id} 
-                  className="bg-card-bg rounded-2xl overflow-hidden border border-card-bg/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="h-48">
-                     <img src={style.image} alt={style.name} className="w-full h-full object-contain transition-transform duration-700 hover:scale-110" loading="lazy" decoding="async" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-3 font-poppins">{style.name}</h3>
-                    <p className="text-text-secondary leading-relaxed">{style.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.section>
+        <EyebrowStyles eyebrowStyles={eyebrowStyles} />
 
         <motion.section 
           id="testimonios" 
