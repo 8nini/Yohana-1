@@ -6,7 +6,7 @@ const Hero = ({ whatsappLink, scrollToSection }) => {
     <section id="inicio" className="relative h-screen flex items-center justify-center bg-background">
       <div className="absolute inset-0 bg-gradient-to-b from-background/20 to-background/80 z-0"></div>
       <img
-        src="/images/hero.jpg"
+        src="/images/hero.webp"
         alt="Fondo estudio"
         className="absolute inset-0 w-full h-full object-cover opacity-30"
         loading="eager"

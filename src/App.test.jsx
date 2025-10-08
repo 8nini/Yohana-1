@@ -19,10 +19,10 @@ test('should render gallery images with correct src and alt attributes', () => {
   expect(galleryImages).toHaveLength(4);
 
   const expectedImages = [
-    { src: "/images/galeria-1.jpg", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
-    { src: "/images/galeria-2.jpg", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
-    { src: "/images/galeria-3.jpg", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
-    { src: "/images/galeria-4.jpg", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
+    { src: "/images/galeria-1.webp", alt: "Tatuaje de rosario en hombro y brazo, estilo blackwork." },
+    { src: "/images/galeria-2.webp", alt: "Tatuaje de dragón en la espalda, estilo japonés a color." },
+    { src: "/images/galeria-3.webp", alt: "Tatuaje de diseño biomecánico en antebrazo, blackwork." },
+    { src: "/images/galeria-4.webp", alt: "Tatuaje de rostro de mujer en antebrazo, blackwork." }
   ];
 
   galleryImages.forEach((img, i) => {
