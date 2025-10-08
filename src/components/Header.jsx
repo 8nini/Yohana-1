@@ -11,6 +11,17 @@ const Header = ({
 }) => {
   const navLinks = ['inicio', 'estilos', 'sobre-nosotros', 'cejas', 'artistas', 'galeria', 'simulador', 'inspiracion-ia', 'cuidados', 'contacto'];
 
+  const formatNavLink = (section) => {
+    if (section === 'sobre-nosotros') return 'Sobre Nosotros';
+    return section
+      .split('-')
+      .map(word => {
+        if (word.toLowerCase() === 'ia') return 'IA';
+        return word.charAt(0).toUpperCase() + word.slice(1)
+      })
+      .join(' ');
+  };
+
   return (
     <>
       <div
@@ -54,7 +65,7 @@ const Header = ({
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {section === 'sobre-nosotros' ? 'Sobre Nosotros' : section.charAt(0).toUpperCase() + section.slice(1)}
+                  {formatNavLink(section)}
                 </motion.button>
               ))}
             </nav>
@@ -91,7 +102,7 @@ const Header = ({
                         : 'text-text-secondary hover:text-text-primary'
                     }`}
                   >
-                    {section === 'sobre-nosotros' ? 'Sobre Nosotros' : section.charAt(0).toUpperCase() + section.slice(1)}
+                    {formatNavLink(section)}
                   </button>
                 ))}
                 <a
