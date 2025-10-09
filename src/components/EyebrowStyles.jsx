@@ -7,39 +7,39 @@ const EyebrowStyles = ({ eyebrowStyles }) => {
       title: "Rostro Ovalado",
       idealShape: "Arco suave y definido, con ligera inclinación.",
       reason: "Este rostro es equilibrado, así que casi cualquier estilo le queda bien. Las cejas con arco natural alargan visualmente y mantienen la proporción.",
-      image: "/images/rostro-ovalado.webp"
+      image: "https://via.placeholder.com/400x300.png/1f2937/ffffff?text=Rostro+Ovalado"
     },
     {
       title: "Rostro Redondo",
       idealShape: "Arco marcado y cejas más angulosas.",
       reason: "Añaden definición y alargan visualmente el rostro, contrarrestando la redondez.",
-      image: "/images/rostro-redondo.webp"
+      image: "https://via.placeholder.com/400x300.png/1f2937/ffffff?text=Rostro+Redondo"
     },
     {
       title: "Rostro Cuadrado",
       idealShape: "Arco suave y redondeado, evitando ángulos muy marcados.",
       reason: "Suavizan la mandíbula fuerte y aportan feminidad o equilibrio.",
-      image: "/images/rostro-cuadrado.webp"
+      image: "https://via.placeholder.com/400x300.png/1f2937/ffffff?text=Rostro+Cuadrado"
     },
     {
       title: "Rostro Alargado / Rectangular",
       idealShape: "Cejas más rectas o con arco muy suave, evitando que sean demasiado altas.",
       reason: "Acortan visualmente el rostro y evitan acentuar su longitud.",
-      image: "/images/rostro-alargado.webp"
+      image: "https://via.placeholder.com/400x300.png/1f2937/ffffff?text=Rostro+Alargado"
     },
     {
       title: "Rostro Corazón",
       description: "(frente ancha, mentón estrecho)",
       idealShape: "Arco suave y redondeado, con inicio bien definido.",
       reason: "Equilibran la frente ancha y suavizan la transición hacia el mentón.",
-      image: "/images/rostro-corazon.webp"
+      image: "https://via.placeholder.com/400x300.png/1f2937/ffffff?text=Rostro+Coraz%C3%B3n"
     },
     {
       title: "Rostro Diamante",
       description: "(pómulos anchos, frente y mentón estrechos)",
       idealShape: "Arco redondeado y cejas más largas en la parte interna.",
       reason: "Ayudan a equilibrar los pómulos prominentes y dan armonía al tercio superior del rostro.",
-      image: "/images/rostro-diamante.webp"
+      image: "https://via.placeholder.com/400x300.png/1f2937/ffffff?text=Rostro+Diamante"
     }
   ];
 
