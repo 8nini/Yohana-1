@@ -6,34 +6,40 @@ const EyebrowStyles = ({ eyebrowStyles }) => {
     {
       title: "Rostro Ovalado",
       idealShape: "Arco suave y definido, con ligera inclinación.",
-      reason: "Este rostro es equilibrado, así que casi cualquier estilo le queda bien. Las cejas con arco natural alargan visualmente y mantienen la proporción."
+      reason: "Este rostro es equilibrado, así que casi cualquier estilo le queda bien. Las cejas con arco natural alargan visualmente y mantienen la proporción.",
+      image: "/images/rostro-ovalado.webp"
     },
     {
       title: "Rostro Redondo",
       idealShape: "Arco marcado y cejas más angulosas.",
-      reason: "Añaden definición y alargan visualmente el rostro, contrarrestando la redondez."
+      reason: "Añaden definición y alargan visualmente el rostro, contrarrestando la redondez.",
+      image: "/images/rostro-redondo.webp"
     },
     {
       title: "Rostro Cuadrado",
       idealShape: "Arco suave y redondeado, evitando ángulos muy marcados.",
-      reason: "Suavizan la mandíbula fuerte y aportan feminidad o equilibrio."
+      reason: "Suavizan la mandíbula fuerte y aportan feminidad o equilibrio.",
+      image: "/images/rostro-cuadrado.webp"
     },
     {
       title: "Rostro Alargado / Rectangular",
       idealShape: "Cejas más rectas o con arco muy suave, evitando que sean demasiado altas.",
-      reason: "Acortan visualmente el rostro y evitan acentuar su longitud."
+      reason: "Acortan visualmente el rostro y evitan acentuar su longitud.",
+      image: "/images/rostro-alargado.webp"
     },
     {
       title: "Rostro Corazón",
       description: "(frente ancha, mentón estrecho)",
       idealShape: "Arco suave y redondeado, con inicio bien definido.",
-      reason: "Equilibran la frente ancha y suavizan la transición hacia el mentón."
+      reason: "Equilibran la frente ancha y suavizan la transición hacia el mentón.",
+      image: "/images/rostro-corazon.webp"
     },
     {
       title: "Rostro Diamante",
       description: "(pómulos anchos, frente y mentón estrechos)",
       idealShape: "Arco redondeado y cejas más largas en la parte interna.",
-      reason: "Ayudan a equilibrar los pómulos prominentes y dan armonía al tercio superior del rostro."
+      reason: "Ayudan a equilibrar los pómulos prominentes y dan armonía al tercio superior del rostro.",
+      image: "/images/rostro-diamante.webp"
     }
   ];
 
@@ -87,9 +93,12 @@ const EyebrowStyles = ({ eyebrowStyles }) => {
               Las cejas no solo enmarcan la mirada: equilibran tu rostro. Elegir el diseño ideal según tu morfología facial realza tus rasgos naturales y aporta armonía. Aquí te decimos cuál es la mejor opción para ti:
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 text-left">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
             {guideData.map((item, index) => (
               <div key={index} className="bg-card-bg p-6 rounded-2xl border border-card-bg/50 space-y-3 flex flex-col">
+                <div className="h-48 mb-4 rounded-lg overflow-hidden bg-background/50 flex items-center justify-center">
+                    <img src={item.image} alt={`Forma de rostro ${item.title}`} className="w-full h-full object-contain" loading="lazy" decoding="async" />
+                </div>
                 <h4 className="text-xl font-bold text-primary-accent font-poppins">{item.title}</h4>
                 {item.description && <p className="text-sm text-text-secondary -mt-2 mb-2 italic">{item.description}</p>}
                 <div className="mt-2">
