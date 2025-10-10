@@ -394,7 +394,8 @@ const App = () => {
                       <button
                         onClick={() => {
                           const isValidImageUrl = (url) => {
-                            return /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
+                            // Updated regex to handle URLs with query parameters
+                            return /\.(jpg|jpeg|png|webp|gif|svg)(?=\?|$)/i.test(url);
                           };
                           if (isValidImageUrl(designUrl)) {
                             setDesignImage(designUrl);
