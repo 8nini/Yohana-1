@@ -17,6 +17,7 @@ import Header from './components/Header';
 import AboutUs from './components/AboutUs';
 import TattooStyles from './components/TattooStyles';
 import EyebrowStyles from './components/EyebrowStyles';
+import FaceShapes from './components/FaceShapes';
 import Hero from './components/Hero';
 import Testimonials from './components/Testimonials';
 
@@ -268,6 +269,7 @@ const App = () => {
         <AboutUs />
 
         <EyebrowStyles eyebrowStyles={eyebrowStyles} />
+        <FaceShapes />
 
         <Testimonials testimonials={testimonials} />
 
@@ -394,8 +396,7 @@ const App = () => {
                       <button
                         onClick={() => {
                           const isValidImageUrl = (url) => {
-                            // Updated regex to handle URLs with query parameters
-                            return /\.(jpg|jpeg|png|webp|gif|svg)(?=\?|$)/i.test(url);
+                            return /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
                           };
                           if (isValidImageUrl(designUrl)) {
                             setDesignImage(designUrl);

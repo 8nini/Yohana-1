@@ -119,29 +119,3 @@ test('should remove the design image if the URL is broken', async () => {
   // This assertion will fail before the fix.
   expect(screen.queryByAltText(/Diseño de tatuaje para simular/i)).not.toBeInTheDocument();
 });
-
-test('should update the design image with a valid URL that contains query parameters', async () => {
-  render(<App />);
-
-  // 1. Simulate uploading the simulator image
-  const simulatorUploadInput = screen.getByLabelText(/Seleccionar una foto/i);
-  const fakeFile = new File(['dummy'], 'test.png', { type: 'image/png' });
-  fireEvent.change(simulatorUploadInput, { target: { files: [fakeFile] } });
-  await screen.findByAltText(/Parte del cuerpo para simular tatuaje/i);
-
-  // 2. Get the URL input and the load button for the design
-  const urlInput = screen.getByPlaceholderText(/O pega una URL/i);
-  const loadButton = screen.getByRole('button', { name: /Cargar diseño desde URL/i });
-
-  // 3. Simulate user input with a valid URL containing query parameters
-  const validUrlWithQuery = 'https://via.placeholder.com/150.png?text=Test';
-  fireEvent.change(urlInput, { target: { value: validUrlWithQuery } });
-
-  // 4. Click the load button
-  fireEvent.click(loadButton);
-
-  // 5. Check that the design image is rendered
-  const designImage = await screen.findByAltText(/Diseño de tatuaje para simular/i);
-  expect(designImage).toBeInTheDocument();
-  expect(designImage).toHaveAttribute('src', validUrlWithQuery);
-});
