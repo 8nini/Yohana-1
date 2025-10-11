@@ -4,8 +4,8 @@ const FaceShapes = () => {
   const faceTypes = [
     {
       id: 1,
-      name: "Rostro Alargado",
-      image: "/images/rostro-alargado.webp",
+      name: "Rostro Alargado-Rectangular",
+      image: "/images/Rostro Alargado-Rectangular.webp",
       description: "Características: Frente alta, mandíbula angulosa, largo de cara mayor que el ancho.",
       idealShape: "Cejas más rectas o con arco muy suave, evitando que sean demasiado altas.",
       reason: "Acortan visualmente el rostro y evitan acentuar su longitud."
@@ -13,7 +13,7 @@ const FaceShapes = () => {
     {
       id: 2,
       name: "Rostro Corazón",
-      image: "/images/rostro-corazon.webp",
+      image: "/images/Rostro Corazón.webp",
       description: "Características: Frente ancha, barbilla puntiaguda, mejillas prominentes.",
       idealShape: "Arco suave y redondeado, con inicio bien definido.",
       reason: "Equilibran la frente ancha y suavizan la transición hacia el mentón."
@@ -21,7 +21,7 @@ const FaceShapes = () => {
     {
       id: 3,
       name: "Rostro Cuadrado",
-      image: "/images/rostro-cuadrado.webp",
+      image: "/images/Rostro Cuadrado.webp",
       description: "Características: Mandíbula cuadrada, frente y barbilla de igual anchura, líneas fuertes.",
       idealShape: "Arco suave y redondeado, evitando ángulos muy marcados.",
       reason: "Suavizan la mandíbula fuerte y aportan feminidad o equilibrio."
@@ -29,7 +29,7 @@ const FaceShapes = () => {
     {
       id: 4,
       name: "Rostro Diamante",
-      image: "/images/rostro-diamante.webp",
+      image: "/images/Rostro Diamante.webp",
       description: "Características: Frente y barbilla estrechas, mejillas más anchas, forma de diamante.",
       idealShape: "Arco redondeado y cejas más largas en la parte interna.",
       reason: "Ayudan a equilibrar los pómulos prominentes y dan armonía al tercio superior del rostro."
@@ -37,7 +37,7 @@ const FaceShapes = () => {
     {
       id: 5,
       name: "Rostro Ovalado",
-      image: "/images/rostro-ovalado.webp",
+      image: "/images/Rostro Ovalado.webp",
       description: "Características: Frente más ancha que la barbilla, curvas suaves, proporciones equilibradas.",
       idealShape: "Arco suave y definido, con ligera inclinación.",
       reason: "Este rostro es equilibrado, así que casi cualquier estilo le queda bien. Las cejas con arco natural alargan visualmente y mantienen la proporción."
@@ -45,7 +45,7 @@ const FaceShapes = () => {
     {
       id: 6,
       name: "Rostro Redondo",
-      image: "/images/rostro-redondo.webp",
+      image: "/images/Rostro Redondo.webp",
       description: "Características: Ancho y largo de cara similares, líneas suaves, mejillas redondeadas.",
       idealShape: "Arco marcado y cejas más angulosas.",
       reason: "Añaden definición y alargan visualmente el rostro, contrarrestando la redondez."
