@@ -86,37 +86,6 @@ const EyebrowStyles = ({ eyebrowStyles }) => {
           ))}
         </motion.div>
 
-        <motion.div className="mt-24" variants={itemVariants}>
-          <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-text-primary font-poppins">Guía Rápida: Cejas que Armonizan con tu Rostro</h3>
-            <p className="text-lg text-text-secondary max-w-3xl mx-auto">
-              Las cejas no solo enmarcan la mirada: equilibran tu rostro. Elegir el diseño ideal según tu morfología facial realza tus rasgos naturales y aporta armonía. Aquí te decimos cuál es la mejor opción para ti:
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            {guideData.map((item, index) => (
-              <div key={index} className="bg-card-bg p-6 rounded-2xl border border-card-bg/50 space-y-3 flex flex-col">
-                <div className="h-48 mb-4 rounded-lg overflow-hidden bg-background/50 flex items-center justify-center">
-                    <img src={item.image} alt={`Forma de rostro ${item.title}`} className="w-full h-full object-contain" loading="lazy" decoding="async" />
-                </div>
-                <h4 className="text-xl font-bold text-primary-accent font-poppins">{item.title}</h4>
-                {item.description && <p className="text-sm text-text-secondary -mt-2 mb-2 italic">{item.description}</p>}
-                <div className="mt-2">
-                  <p className="font-semibold text-text-primary flex items-center">
-                    <span className="text-green-400 mr-2">✅</span> Forma ideal:
-                  </p>
-                  <p className="text-text-secondary pl-7">{item.idealShape}</p>
-                </div>
-                <div className="mt-2">
-                  <p className="font-semibold text-text-primary flex items-center">
-                    <span className="mr-2">✨</span> Por qué:
-                  </p>
-                  <p className="text-text-secondary pl-7 italic">{item.reason}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
 
       </div>
     </motion.section>
