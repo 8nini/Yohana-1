@@ -5,38 +5,50 @@ const FaceShapes = () => {
     {
       id: 1,
       name: "Rostro Alargado",
-      image: "/images/Rostro Alargado-Rectangular.webp",
-      description: "Características: Frente alta, mandíbula angulosa, largo de cara mayor que el ancho."
+      image: "/images/rostro-alargado.webp",
+      description: "Características: Frente alta, mandíbula angulosa, largo de cara mayor que el ancho.",
+      idealShape: "Cejas más rectas o con arco muy suave, evitando que sean demasiado altas.",
+      reason: "Acortan visualmente el rostro y evitan acentuar su longitud."
     },
     {
       id: 2,
       name: "Rostro Corazón",
-      image: "/images/Rostro Corazón.webp",
-      description: "Características: Frente ancha, barbilla puntiaguda, mejillas prominentes."
+      image: "/images/rostro-corazon.webp",
+      description: "Características: Frente ancha, barbilla puntiaguda, mejillas prominentes.",
+      idealShape: "Arco suave y redondeado, con inicio bien definido.",
+      reason: "Equilibran la frente ancha y suavizan la transición hacia el mentón."
     },
     {
       id: 3,
       name: "Rostro Cuadrado",
-      image: "/images/Rostro Cuadrado.webp",
-      description: "Características: Mandíbula cuadrada, frente y barbilla de igual anchura, líneas fuertes."
+      image: "/images/rostro-cuadrado.webp",
+      description: "Características: Mandíbula cuadrada, frente y barbilla de igual anchura, líneas fuertes.",
+      idealShape: "Arco suave y redondeado, evitando ángulos muy marcados.",
+      reason: "Suavizan la mandíbula fuerte y aportan feminidad o equilibrio."
     },
     {
       id: 4,
       name: "Rostro Diamante",
-      image: "/images/Rostro Diamante.webp",
-      description: "Características: Frente y barbilla estrechas, mejillas más anchas, forma de diamante."
+      image: "/images/rostro-diamante.webp",
+      description: "Características: Frente y barbilla estrechas, mejillas más anchas, forma de diamante.",
+      idealShape: "Arco redondeado y cejas más largas en la parte interna.",
+      reason: "Ayudan a equilibrar los pómulos prominentes y dan armonía al tercio superior del rostro."
     },
     {
       id: 5,
       name: "Rostro Ovalado",
-      image: "/images/Rostro Ovalado.webp",
-      description: "Características: Frente más ancha que la barbilla, curvas suaves, proporciones equilibradas."
+      image: "/images/rostro-ovalado.webp",
+      description: "Características: Frente más ancha que la barbilla, curvas suaves, proporciones equilibradas.",
+      idealShape: "Arco suave y definido, con ligera inclinación.",
+      reason: "Este rostro es equilibrado, así que casi cualquier estilo le queda bien. Las cejas con arco natural alargan visualmente y mantienen la proporción."
     },
     {
       id: 6,
       name: "Rostro Redondo",
-      image: "/images/Rostro Redondo.webp",
-      description: "Características: Ancho y largo de cara similares, líneas suaves, mejillas redondeadas."
+      image: "/images/rostro-redondo.webp",
+      description: "Características: Ancho y largo de cara similares, líneas suaves, mejillas redondeadas.",
+      idealShape: "Arco marcado y cejas más angulosas.",
+      reason: "Añaden definición y alargan visualmente el rostro, contrarrestando la redondez."
     }
   ];
 
@@ -63,7 +75,21 @@ const FaceShapes = () => {
               </div>
               <div className="p-6">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3">{face.name}</h3>
-                <p className="text-gray-300 leading-relaxed">{face.description}</p>
+                <p className="text-gray-400 text-sm mb-4">{face.description}</p>
+                <div className="space-y-3 text-left">
+                    <div>
+                        <p className="font-semibold text-pink-400 flex items-center">
+                            <span className="text-green-400 mr-2">✅</span> Forma ideal:
+                        </p>
+                        <p className="text-gray-300 pl-7 text-sm">{face.idealShape}</p>
+                    </div>
+                    <div>
+                        <p className="font-semibold text-purple-400 flex items-center">
+                            <span className="mr-2">✨</span> Por qué:
+                        </p>
+                        <p className="text-gray-300 pl-7 text-sm italic">{face.reason}</p>
+                    </div>
+                </div>
               </div>
             </div>
           ))}
